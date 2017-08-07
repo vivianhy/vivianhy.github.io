@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C语言,算法," />
 
 
 
@@ -107,15 +107,22 @@
 
 
 
-<meta name="description" content="路漫漫其修远兮 吾将上下而求索">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vivian's Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="1.最大波动问题描述　　小明正在利用股票的波动程度来研究股票。小明拿到了一只股票每天收盘时的价格，他想知道，这只股票连续几天的最大波动值是多少，即在这几天中某天收盘价格与前一天收盘价格之差的绝对值最大是多少。
+输入格式　　输入的第一行包含了一个整数n，表示小明拿到的收盘价格的连续天数。　　第二行包含n个正整数，依次表示每天的收盘价格。
+输出格式　　输出一个整数，表示这只股票这n天中的最大波动值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCF_201609">
+<meta property="og:url" content="http://yoursite.com/2017/08/05/CCF201609/index.html">
 <meta property="og:site_name" content="Vivian's Blog">
-<meta property="og:description" content="路漫漫其修远兮 吾将上下而求索">
+<meta property="og:description" content="1.最大波动问题描述　　小明正在利用股票的波动程度来研究股票。小明拿到了一只股票每天收盘时的价格，他想知道，这只股票连续几天的最大波动值是多少，即在这几天中某天收盘价格与前一天收盘价格之差的绝对值最大是多少。
+输入格式　　输入的第一行包含了一个整数n，表示小明拿到的收盘价格的连续天数。　　第二行包含n个正整数，依次表示每天的收盘价格。
+输出格式　　输出一个整数，表示这只股票这n天中的最大波动值。">
+<meta property="og:updated_time" content="2017-08-07T13:27:41.579Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vivian's Blog">
-<meta name="twitter:description" content="路漫漫其修远兮 吾将上下而求索">
+<meta name="twitter:title" content="CCF_201609">
+<meta name="twitter:description" content="1.最大波动问题描述　　小明正在利用股票的波动程度来研究股票。小明拿到了一只股票每天收盘时的价格，他想知道，这只股票连续几天的最大波动值是多少，即在这几天中某天收盘价格与前一天收盘价格之差的绝对值最大是多少。
+输入格式　　输入的第一行包含了一个整数n，表示小明拿到的收盘价格的连续天数。　　第二行包含n个正整数，依次表示每天的收盘价格。
+输出格式　　输出一个整数，表示这只股票这n天中的最大波动值。">
 
 
 
@@ -143,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/05/CCF201609/"/>
 
 
 
 
 
-  <title> Vivian's Blog </title>
+  <title> CCF_201609 | Vivian's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -174,9 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,9 +284,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -311,10 +316,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/08/05/CCF201609/" itemprop="url">
-                  CCF_201609
-                </a>
+                CCF_201609
               
             
           </h1>
@@ -398,9 +400,7 @@
       
 
       
-        
-          
-            <h2 id="1-最大波动"><a href="#1-最大波动" class="headerlink" title="1.最大波动"></a>1.最大波动</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　小明正在利用股票的波动程度来研究股票。小明拿到了一只股票每天收盘时的价格，他想知道，这只股票连续几天的最大波动值是多少，即在这几天中某天收盘价格与前一天收盘价格之差的绝对值最大是多少。</p>
+        <h2 id="1-最大波动"><a href="#1-最大波动" class="headerlink" title="1.最大波动"></a>1.最大波动</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　小明正在利用股票的波动程度来研究股票。小明拿到了一只股票每天收盘时的价格，他想知道，这只股票连续几天的最大波动值是多少，即在这几天中某天收盘价格与前一天收盘价格之差的绝对值最大是多少。</p>
 <h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含了一个整数n，表示小明拿到的收盘价格的连续天数。<br>　　第二行包含n个正整数，依次表示每天的收盘价格。</p>
 <h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出一个整数，表示这只股票这n天中的最大波动值。</p>
 <h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>6<br>2 5 5 7 3 5</p>
@@ -437,42 +437,58 @@
 <li>数据约定：<br>　前 20% 的评测用例召唤随从的位置都是战场的最右边。<br>　前 40% 的评测用例没有 attack 操作。<br>　前 60% 的评测用例不会出现随从死亡的情况。<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3>随从用结构体数组存放。结构体中包含位置编号、攻击值、生命值以及是否死亡标志位。<br>每召唤一个随从，就新增一个数组元素，由于位置编号在结构体中，因此召唤随从和随从死亡都得遍历整个数组，修改其他随从的编号。这个方法效率不太高，但实现起来比较简单，增加两个函数fzhaohuan()和fsiwang(),需要时调用即可。<br>对于玩家的对换，使用变量huihe来标志，奇数表示先手玩家，偶数表示后手玩家，先手玩家和后手玩家的操作代码是类似的。<h3 id="源代码-2"><a href="#源代码-2" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line"></div><div class="line">typedef struct summon&#123; //随从</div><div class="line">    int position; //位置</div><div class="line">    int attack;</div><div class="line">    int health;</div><div class="line">    int flag; //是否死亡</div><div class="line">&#125;summon;</div><div class="line">summon sx[100],sy[100];</div><div class="line"></div><div class="line">typedef struct attack&#123; //攻击</div><div class="line">    int attacker;</div><div class="line">    int defender;</div><div class="line">&#125;attack;</div><div class="line">attack ax,ay;</div><div class="line"></div><div class="line">typedef struct hero&#123; //英雄</div><div class="line">    int health;</div><div class="line">    int attack;</div><div class="line">&#125;hero;</div><div class="line">hero hx=&#123;30,0&#125;,hy=&#123;30,0&#125;;</div><div class="line"></div><div class="line">void fzhaohuan(summon s[],int p); </div><div class="line">void fsiwang(summon s[],int p,int k);</div><div class="line">void bubble(summon s[],int n);</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int n;</div><div class="line">    char a[10];</div><div class="line">    scanf(&quot;%d&quot;,&amp;n);</div><div class="line">    int huihe=1;//奇数表示先手玩家，偶数表示后手玩家</div><div class="line">    int px=0,py=0;</div><div class="line">    for(int i=0;i&lt;n;i++)</div><div class="line">    &#123;</div><div class="line">        if(huihe%2 != 0) //先手玩家</div><div class="line">        &#123;</div><div class="line">            scanf(&quot;%s&quot;,a);</div><div class="line">            if(strcmp(a,&quot;summon&quot;)==0)</div><div class="line">            &#123;</div><div class="line">                scanf(&quot;%d&quot;,&amp;sx[px].position);</div><div class="line">                scanf(&quot;%d&quot;,&amp;sx[px].attack);</div><div class="line">                scanf(&quot;%d&quot;,&amp;sx[px].health);</div><div class="line">                sx[px].flag=1;</div><div class="line">                fzhaohuan(sx,px);</div><div class="line">                px++;</div><div class="line">            &#125;</div><div class="line">            else if(strcmp(a,&quot;attack&quot;)==0)</div><div class="line">            &#123;</div><div class="line">                scanf(&quot;%d&quot;,&amp;ax.attacker);</div><div class="line">                scanf(&quot;%d&quot;,&amp;ax.defender);</div><div class="line">                int k1,k2;</div><div class="line">                for(k1=0;k1&lt;px;k1++)</div><div class="line">                &#123;</div><div class="line">                    if((ax.attacker==sx[k1].position)&amp;&amp;(sx[k1].flag!=0))</div><div class="line">                        break;</div><div class="line">                &#125;</div><div class="line">                if(ax.defender==0)    //攻击英雄</div><div class="line">                &#123;</div><div class="line">                    hy.health=hy.health-sx[k1].attack;</div><div class="line">                    if(hy.health&lt;=0)</div><div class="line">                        break;</div><div class="line">                &#125;</div><div class="line">                else   //攻击随从</div><div class="line">                &#123;</div><div class="line">                    for(k2=0;k2&lt;py;k2++)</div><div class="line">                    &#123;</div><div class="line">                        if((ax.defender==sy[k2].position)&amp;&amp;(sy[k2].flag!=0))</div><div class="line">                        break;</div><div class="line">                    &#125;</div><div class="line">                    sx[k1].health=sx[k1].health-sy[k2].attack;</div><div class="line">                    sy[k2].health=sy[k2].health-sx[k1].attack;</div><div class="line">                    if(sx[k1].health&lt;=0)</div><div class="line">                    &#123;</div><div class="line">                        sx[k1].flag=0;</div><div class="line">                        fsiwang(sx,px,k1);</div><div class="line">                    &#125;</div><div class="line">                    if(sy[k2].health&lt;=0)</div><div class="line">                    &#123;</div><div class="line">                        sy[k2].flag=0;</div><div class="line">                        fsiwang(sy,py,k2);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            else if(strcmp(a,&quot;end&quot;)==0)</div><div class="line">            &#123;</div><div class="line">                huihe++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        else   //后手玩家</div><div class="line">        &#123;</div><div class="line">            scanf(&quot;%s&quot;,a);</div><div class="line">            if(strcmp(a,&quot;summon&quot;)==0)</div><div class="line">            &#123;</div><div class="line">                scanf(&quot;%d&quot;,&amp;sy[py].position);</div><div class="line">                scanf(&quot;%d&quot;,&amp;sy[py].attack);</div><div class="line">                scanf(&quot;%d&quot;,&amp;sy[py].health);</div><div class="line">                sy[py].flag=1;</div><div class="line">                fzhaohuan(sy,py);</div><div class="line">                py++;</div><div class="line">            &#125;</div><div class="line">            else if(strcmp(a,&quot;attack&quot;)==0)</div><div class="line">            &#123;</div><div class="line">                scanf(&quot;%d&quot;,&amp;ay.attacker);</div><div class="line">                scanf(&quot;%d&quot;,&amp;ay.defender);</div><div class="line">                int k1,k2;</div><div class="line">                for(k1=0;k1&lt;py;k1++)</div><div class="line">                &#123;</div><div class="line">                    if((ay.attacker==sy[k1].position)&amp;&amp;(sy[k1].flag!=0))</div><div class="line">                        break;</div><div class="line">                &#125;</div><div class="line">                if(ay.defender==0)</div><div class="line">                &#123;</div><div class="line">                    hx.health=hx.health-sy[k1].attack;</div><div class="line">                    if(hx.health&lt;=0)</div><div class="line">                        break;</div><div class="line">                &#125;</div><div class="line">                else</div><div class="line">                &#123;</div><div class="line">                    for(k2=0;k2&lt;px;k2++)</div><div class="line">                    &#123;</div><div class="line">                        if((ay.defender==sx[k2].position)&amp;&amp;(sx[k2].flag!=0))</div><div class="line">                        break;</div><div class="line">                    &#125;</div><div class="line">                    sy[k1].health=sy[k1].health-sx[k2].attack;</div><div class="line">                    sx[k2].health=sx[k2].health-sy[k1].attack;</div><div class="line">                    if(sy[k1].health&lt;=0)</div><div class="line">                    &#123;</div><div class="line">                        sy[k1].flag=0;</div><div class="line">                        fsiwang(sy,py,k1);</div><div class="line">                    &#125;</div><div class="line">                    if(sx[k2].health&lt;=0)</div><div class="line">                    &#123;</div><div class="line">                        sx[k2].flag=0;</div><div class="line">                        fsiwang(sx,px,k2);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            else if(strcmp(a,&quot;end&quot;)==0)</div><div class="line">            &#123;</div><div class="line">                huihe++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    //输出</div><div class="line">    if(hx.health&lt;=0) printf(&quot;%d\n&quot;,-1);</div><div class="line">    else if(hy.health&lt;=0) printf(&quot;%d\n&quot;,1);</div><div class="line">    else printf(&quot;%d\n&quot;,0);</div><div class="line"></div><div class="line">    //先手玩家英雄生命值</div><div class="line">    printf(&quot;%d\n&quot;,hx.health);</div><div class="line"></div><div class="line">    //先手玩家随从个数及生命值</div><div class="line">    int count=0;</div><div class="line">    summon st[10];</div><div class="line">    for(int i=0;i&lt;px;i++)</div><div class="line">    &#123;</div><div class="line">        if(sx[i].flag)</div><div class="line">        &#123;</div><div class="line">            st[count]=sx[i];</div><div class="line">            count++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    bubble(st,count);//给存活的随从按位置编号排序后输出</div><div class="line">    printf(&quot;%d &quot;,count);</div><div class="line">    for(int i=0;i&lt;count;i++)</div><div class="line">    &#123;</div><div class="line">        if(i!=count-1)</div><div class="line">            printf(&quot;%d &quot;,st[i].health);</div><div class="line">        else</div><div class="line">            printf(&quot;%d\n&quot;,st[i].health);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //后手玩家英雄生命值</div><div class="line">    printf(&quot;%d\n&quot;,hy.health);</div><div class="line"></div><div class="line">    //后手玩家随从个数及生命值</div><div class="line">    count=0;</div><div class="line">    for(int i=0;i&lt;py;i++)</div><div class="line">    &#123;</div><div class="line">        if(sy[i].flag)</div><div class="line">        &#123;</div><div class="line">            st[count]=sy[i];</div><div class="line">            count++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    bubble(st,count);</div><div class="line">    printf(&quot;%d &quot;,count);</div><div class="line">    for(int i=0;i&lt;count;i++)</div><div class="line">    &#123;</div><div class="line">        if(i!=count-1)</div><div class="line">            printf(&quot;%d &quot;,st[i].health);</div><div class="line">        else</div><div class="line">            printf(&quot;%d\n&quot;,st[i].health);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void fzhaohuan(summon s[],int p) //召唤一个随从后，修改其他随从的位置编号</div><div class="line">&#123;</div><div class="line">    for(int i=0;i&lt;p;i++)</div><div class="line">    &#123;</div><div class="line">        if((s[i].position&gt;=s[p].position)&amp;&amp;(s[i].flag!=0))</div><div class="line">            s[i].position++;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void fsiwang(summon s[],int p,int k) //一个随从死亡，修改其他随从的位置编号</div><div class="line">&#123;</div><div class="line">    for(int i=0;i&lt;p;i++)</div><div class="line">    &#123;</div><div class="line">        if((s[i].position&gt;s[k].position)&amp;&amp;(s[i].flag!=0))</div><div class="line">            s[i].position--;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void bubble(summon s[],int n) //排序函数</div><div class="line">&#123;</div><div class="line">    summon temp;</div><div class="line">    for(int i=1;i&lt;n;i++)</div><div class="line">    &#123;</div><div class="line">        for(int j=0;j&lt;n-i;j++)</div><div class="line">        &#123;</div><div class="line">            if(s[j].position&gt;s[j+1].position)</div><div class="line">            &#123;</div><div class="line">                temp=s[j];</div><div class="line">                s[j]=s[j+1];</div><div class="line">                s[j+1]=temp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 </ul>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"># C语言</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -480,6 +496,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -499,8 +526,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -589,6 +625,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-最大波动"><span class="nav-number">1.</span> <span class="nav-text">1.最大波动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明"><span class="nav-number">1.6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定"><span class="nav-number">1.7.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.8.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.9.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-火车购票"><span class="nav-number">2.</span> <span class="nav-text">2.火车购票</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-1"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-1"><span class="nav-number">2.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-1"><span class="nav-number">2.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明-1"><span class="nav-number">2.6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定-1"><span class="nav-number">2.7.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">2.8.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-1"><span class="nav-number">2.9.</span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解法2"><span class="nav-number">2.10.</span> <span class="nav-text">解法2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码2"><span class="nav-number">2.11.</span> <span class="nav-text">源代码2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-炉石传说"><span class="nav-number">3.</span> <span class="nav-text">3.炉石传说</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-2"><span class="nav-number">3.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-2"><span class="nav-number">3.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-2"><span class="nav-number">3.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-2"><span class="nav-number">3.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明-2"><span class="nav-number">3.6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定-2"><span class="nav-number">3.7.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-2"><span class="nav-number">3.8.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-2"><span class="nav-number">3.9.</span> <span class="nav-text">源代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -696,6 +748,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -713,6 +769,18 @@
       <script id="dsq-count-scr" src="https://vivianhy.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/08/05/CCF201609/';
+          this.page.identifier = '2017/08/05/CCF201609/';
+          this.page.title = 'CCF_201609';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://vivianhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
