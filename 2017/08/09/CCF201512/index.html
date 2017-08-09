@@ -114,8 +114,7 @@
 样例输出13
 样例说明　　20151220的各位数字之和为2+0+1+5+1+2+2+0=13。
 评测用例规模与约定　　所有评测用例满足：0 ≤ n ≤ 1000000000。
-解题思路循环使用求余和除法即可。
-源代码123456789">
+解题思路循环使用求余和除法即可。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCF_201512">
 <meta property="og:url" content="http://yoursite.com/2017/08/09/CCF201512/index.html">
@@ -127,9 +126,8 @@
 样例输出13
 样例说明　　20151220的各位数字之和为2+0+1+5+1+2+2+0=13。
 评测用例规模与约定　　所有评测用例满足：0 ≤ n ≤ 1000000000。
-解题思路循环使用求余和除法即可。
-源代码123456789">
-<meta property="og:updated_time" content="2017-08-09T07:37:45.207Z">
+解题思路循环使用求余和除法即可。">
+<meta property="og:updated_time" content="2017-08-09T07:51:20.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCF_201512">
 <meta name="twitter:description" content="1.数位之和问题描述　　给定一个十进制整数n，输出n的各位数字之和。
@@ -139,8 +137,7 @@
 样例输出13
 样例说明　　20151220的各位数字之和为2+0+1+5+1+2+2+0=13。
 评测用例规模与约定　　所有评测用例满足：0 ≤ n ≤ 1000000000。
-解题思路循环使用求余和除法即可。
-源代码123456789">
+解题思路循环使用求余和除法即可。">
 
 
 
@@ -425,7 +422,7 @@
 <h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>13</p>
 <h3 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h3><p>　　20151220的各位数字之和为2+0+1+5+1+2+2+0=13。</p>
 <h3 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>　　所有评测用例满足：0 ≤ n ≤ 1000000000。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>循环使用求余和除法即可。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>循环使用求余和除法即可。<br><a id="more"></a></p>
 <h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int n;</div><div class="line">	int sum=0;</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	while(n)</div><div class="line">	&#123;</div><div class="line">		sum=sum + n%10;</div><div class="line">		n= n/10;</div><div class="line">	&#125;</div><div class="line">	printf(&quot;%d&quot;,sum);</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="2-消除类游戏"><a href="#2-消除类游戏" class="headerlink" title="2.消除类游戏"></a>2.消除类游戏</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　消除类游戏是深受大众欢迎的一种游戏，游戏在一个包含有n行m列的游戏棋盘上进行，棋盘的每一行每一列的方格上放着一个有颜色的棋子，当一行或一列上有连续三个或更多的相同颜色的棋子时，这些棋子都被消除。当有多处可以被消除时，这些地方的棋子将同时被消除。<br>　　现在给你一个n行m列的棋盘，棋盘中的每一个方格上有一个棋子，请给出经过一次消除后的棋盘。<br>　　请注意：一个棋子可能在某一行和某一列同时被消除。</p>
 <h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含两个整数n, m，用空格分隔，分别表示棋盘的行数和列数。<br>　　接下来n行，每行m个整数，用空格分隔，分别表示每一个方格中的棋子的颜色。颜色使用1至9编号。</p>
