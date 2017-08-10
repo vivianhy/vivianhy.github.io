@@ -1,0 +1,844 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C语言,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vivian's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.数列分段问题描述　　给定一个整数数列，数列中连续相同的最长整数序列算成一段，问数列中共有多少段？
+输入格式　　输入的第一行包含一个整数n，表示数列中整数的个数。　　第二行包含n个整数a1,a2,…,an，表示给定的数列，相邻的整数之间用一个空格分隔。
+输出格式　　输出一个整数，表示给定的数列有多个段。
+样例输入88 8 8 0 12 12 8 0
+样例输出5
+样例说明　　8 8 8是第一段，0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCF_201509">
+<meta property="og:url" content="http://yoursite.com/2017/08/10/CCF201509/index.html">
+<meta property="og:site_name" content="Vivian's Blog">
+<meta property="og:description" content="1.数列分段问题描述　　给定一个整数数列，数列中连续相同的最长整数序列算成一段，问数列中共有多少段？
+输入格式　　输入的第一行包含一个整数n，表示数列中整数的个数。　　第二行包含n个整数a1,a2,…,an，表示给定的数列，相邻的整数之间用一个空格分隔。
+输出格式　　输出一个整数，表示给定的数列有多个段。
+样例输入88 8 8 0 12 12 8 0
+样例输出5
+样例说明　　8 8 8是第一段，0">
+<meta property="og:updated_time" content="2017-08-10T09:47:29.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CCF_201509">
+<meta name="twitter:description" content="1.数列分段问题描述　　给定一个整数数列，数列中连续相同的最长整数序列算成一段，问数列中共有多少段？
+输入格式　　输入的第一行包含一个整数n，表示数列中整数的个数。　　第二行包含n个整数a1,a2,…,an，表示给定的数列，相邻的整数之间用一个空格分隔。
+输出格式　　输出一个整数，表示给定的数列有多个段。
+样例输入88 8 8 0 12 12 8 0
+样例输出5
+样例说明　　8 8 8是第一段，0">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/10/CCF201509/"/>
+
+
+
+
+
+  <title> CCF_201509 | Vivian's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vivian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/CCF201509/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vivianhy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vivian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CCF_201509
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T16:18:20+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CCF/" itemprop="url" rel="index">
+                    <span itemprop="name">CCF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/10/CCF201509/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/10/CCF201509/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-数列分段"><a href="#1-数列分段" class="headerlink" title="1.数列分段"></a>1.数列分段</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　给定一个整数数列，数列中连续相同的最长整数序列算成一段，问数列中共有多少段？</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含一个整数n，表示数列中整数的个数。<br>　　第二行包含n个整数a1,a2,…,an，表示给定的数列，相邻的整数之间用一个空格分隔。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出一个整数，表示给定的数列有多个段。</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>8<br>8 8 8 0 12 12 8 0</p>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>5</p>
+<h3 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h3><p>　　8 8 8是第一段，0是第二段，12 12是第三段，倒数第二个整数8是第四段，最后一个0是第五段。</p>
+<h3 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>　　1 ≤ n ≤ 1000，0 ≤ ai ≤ 1000。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>用变量count记录有多少段，至少有一段，因此初值为1。<br>对整数数列进行遍历，比较当前整数与下一个整数的值，若不相同，代表有新的段，count值加1。<br><a id="more"></a></p>
+<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int n,i;</div><div class="line">	int a[1000];</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	int count=1;</div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">		scanf(&quot;%d&quot;,&amp;a[i]);</div><div class="line">	for(i=0;i&lt;n-1;i++)</div><div class="line">	&#123;</div><div class="line">		if(a[i]!=a[i+1])</div><div class="line">			count++;</div><div class="line">	&#125;</div><div class="line">	printf(&quot;%d&quot;,count);</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-日期计算"><a href="#2-日期计算" class="headerlink" title="2.日期计算"></a>2.日期计算</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　给定一个年份y和一个整数d，问这一年的第d天是几月几日？<br>　　注意闰年的2月有29天。满足下面条件之一的是闰年：<br>　　1） 年份是4的整数倍，而且不是100的整数倍；<br>　　2） 年份是400的整数倍。</p>
+<h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含一个整数y，表示年份，年份在1900到2015之间（包含1900和2015）。<br>　　输入的第二行包含一个整数d，d在1至365之间。</p>
+<h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出两行，每行一个整数，分别表示答案的月份和日期。</p>
+<h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h3><p>2015<br>80</p>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h3><p>3<br>21</p>
+<h3 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h3><p>2000<br>40</p>
+<h3 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h3><p>2<br>9</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>数组m的m[1]~m[12]存放每个月的天数，其中二月份的天数，即m[2]的值要根据给定年份是否为闰年来确定。<br>判断第d天是几月几日，首先要确定在第几月，然后再确定在第几日。若第d天在二月份，则d的值应大于m[1]，小于等于m[1]+m[2]，对应的日期为d-m[1]。<br>这里用循环对每个月的天数进行累加，一旦d小于累加值，则找到了月份。再计算出日期即可。</p>
+<h3 id="源代码-1"><a href="#源代码-1" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int y,d;</div><div class="line">	int m[13];</div><div class="line">	int month,date;</div><div class="line">	scanf(&quot;%d&quot;,&amp;y);</div><div class="line">	scanf(&quot;%d&quot;,&amp;d);</div><div class="line"></div><div class="line">	m[1]=m[3]=m[5]=m[7]=m[8]=m[10]=m[12]=31;</div><div class="line">	m[4]=m[6]=m[9]=m[11]=30;</div><div class="line">	if(((y%4)==0 &amp;&amp; (y%100)!=0) || (y%400)==0)</div><div class="line">		m[2]=29;</div><div class="line">	else</div><div class="line">		m[2]=28;</div><div class="line"></div><div class="line">	int sum=0;</div><div class="line">	int i;</div><div class="line">	for(i=1;i&lt;=12;i++)</div><div class="line">	&#123;</div><div class="line">		sum=sum+m[i];</div><div class="line">		if(d&lt;=sum)</div><div class="line">			break;</div><div class="line">	&#125;</div><div class="line">	month=i;</div><div class="line">	date=d-(sum-m[i]);</div><div class="line">	printf(&quot;%d\n%d&quot;,month,date);</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-模板生成系统"><a href="#3-模板生成系统" class="headerlink" title="3.模板生成系统"></a>3.模板生成系统</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　成成最近在搭建一个网站，其中一些页面的部分内容来自数据库中不同的数据记录，但是页面的基本结构是相同的。为了简化生成网页的工作，成成觉得他需要引入一套模板生成系统。<br>　　模板是包含特殊标记的文本。成成用到的模板只包含一种特殊标记，格式为 &#123;&#123; VAR &#125;&#125;，其中 VAR 是一个变量。该标记在模板生成时会被变量 VAR 的值所替代。例如，如果变量 name = “Tom”，则 &#123;&#123; name &#125;&#125; 会生成 Tom。具体的规则如下：<br>　　·变量名由大小写字母、数字和下划线 (_) 构成，且第一个字符不是数字，长度不超过 16 个字符。<br>　　·变量名是大小写敏感的，Name 和 name 是两个不同的变量。<br>　　·变量的值是字符串。<br>　　·如果标记中的变量没有定义，则生成空串，相当于把标记从模板中删除。<br>　　·模板不递归生成。也就是说，如果变量的值中包含形如 &#123;&#123; VAR &#125;&#125; 的内容，不再做进一步的替换。</p>
+<h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含两个整数 m, n，分别表示模板的行数和模板生成时给出的变量个数。<br>　　接下来 m 行，每行是一个字符串，表示模板。<br>　　接下来 n 行，每行表示一个变量和它的值，中间用一个空格分隔。值是字符串，用双引号(“)括起来，内容可包含除双引号以外的任意可打印 ASCII 字符（ASCII 码范围 32, 33, 35-126）。</p>
+<h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出包含若干行，表示模板生成的结果。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>　　由于样例输入和样例输出中涉及到很多需要转义的符号，比较麻烦，这里就不贴了。</p>
+<h3 id="评测用例规模与约定-1"><a href="#评测用例规模与约定-1" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>　　0 ≤ m ≤ 100<br>　　0 ≤ n ≤ 100<br>　　输入的模板每行长度不超过 80 个字符（不包含换行符）。<br>　　输入保证模板中所有以 &#123;&#123; 开始的子串都是合法的标记，开始是两个左大括号和一个空格，然后是变量名，结尾是一个空格和两个右大括号。<br>　　输入中所有变量的值字符串长度不超过 100 个字符（不包括双引号）。<br>　　保证输入的所有变量的名字各不相同。</p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>设置两个二维数组，数组a用于存放输入模板，数组b用于存放输出模板。<br>变量名和变量值作为一个整体，用结构体数组存放。<br>由于scanf不能读入空格和空串，而gets又不建议使用，因此自己写了一个获取输入字符串的函数GetString()，可读入空格和空串。<br>设置了几个字符串指针，用于进行字符串的遍历和复制。具体逻辑见代码和注释。要注意的是，如果标记中的变量没有定义，即变量名匹配失败，则生成空串，即不做复制操作，直接跳过这个标记即可。<br>第一次提交得分是90，检查了很久没有发现错误，最后发现是存放输出模板的数组b的大小设置小了，原来的是b[100][1000],后来改成b[100][2000]，运行正确。</p>
+<h3 id="源代码-2"><a href="#源代码-2" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line"></div><div class="line">struct VAR&#123;  //变量</div><div class="line">	char name[20];</div><div class="line">	char value[105];</div><div class="line">&#125;var[100];</div><div class="line"></div><div class="line">//获取输入字符串</div><div class="line">void GetString(char *p)</div><div class="line">&#123;</div><div class="line">	char c;</div><div class="line">	while((c=getchar())!=&apos;\n&apos;)</div><div class="line">	&#123;</div><div class="line">		*p=c;</div><div class="line">		p++;</div><div class="line">	&#125;</div><div class="line">	*p=&apos;\0&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int m,n;</div><div class="line">	int i,j;</div><div class="line">	char a[100][100]; //存放输入模板</div><div class="line">	char b[100][2000]; //存放输出模板</div><div class="line">	//输入</div><div class="line">	scanf(&quot;%d&quot;,&amp;m);</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	getchar();</div><div class="line">	for(i=0;i&lt;m;i++)</div><div class="line">		GetString(a[i]);</div><div class="line">	for(j=0;j&lt;n;j++)</div><div class="line">	&#123;</div><div class="line">		scanf(&quot;%s&quot;,var[j].name);</div><div class="line">		getchar();</div><div class="line">		GetString(var[j].value);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	char *p1,*p2;</div><div class="line">	char temp[20];</div><div class="line">	char *pt,*vt;</div><div class="line">	for(i=0;i&lt;m;i++)</div><div class="line">	&#123;</div><div class="line">		p1=a[i];</div><div class="line">		p2=b[i];</div><div class="line">		while(*p1)</div><div class="line">		&#123;</div><div class="line">			if(*p1==&apos;&#123;&apos; &amp;&amp; *(p1+1)==&apos;&#123;&apos; &amp;&amp; *(p1+2)==&apos; &apos;) //遇到标记</div><div class="line">			&#123;</div><div class="line">				p1=p1+3;</div><div class="line">				pt=temp;</div><div class="line">				while(*p1!=&apos; &apos;)	//获得变量名</div><div class="line">				&#123;</div><div class="line">					*pt=*p1;</div><div class="line">					pt++;</div><div class="line">					p1++;</div><div class="line">				&#125;</div><div class="line">				*pt=&apos;\0&apos;;</div><div class="line">				for(j=0;j&lt;n;j++)</div><div class="line">				&#123;</div><div class="line">					if(strcmp(temp,var[j].name)==0)	//变量名匹配，获取变量值</div><div class="line">						break;</div><div class="line">				&#125;</div><div class="line">				if(j!=n) //匹配成功，则将对应变量值复制到输出字符串中</div><div class="line">				&#123;</div><div class="line">					vt=var[j].value;</div><div class="line">					vt++;</div><div class="line">					while(*vt!=&apos;\&quot;&apos;)</div><div class="line">					&#123;</div><div class="line">						*p2=*vt;</div><div class="line">						p2++;</div><div class="line">						vt++;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				p1=p1+3;</div><div class="line">			&#125;</div><div class="line">			else</div><div class="line">			&#123;</div><div class="line">				*p2=*p1;</div><div class="line">				p1++;</div><div class="line">				p2++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		*p2=&apos;\0&apos;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	//输出</div><div class="line">	for(i=0;i&lt;m;i++)</div><div class="line">		printf(&quot;%s\n&quot;,b[i]);</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"># C语言</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/09/CCF201512/" rel="next" title="CCF_201512">
+                <i class="fa fa-chevron-left"></i> CCF_201512
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Vivianhy" />
+          <p class="site-author-name" itemprop="name">Vivianhy</p>
+           
+              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/vivianhy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=s8XaxdrS3dvK88LCndDc3g" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数列分段"><span class="nav-number">1.</span> <span class="nav-text">1.数列分段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明"><span class="nav-number">1.6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定"><span class="nav-number">1.7.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.8.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.9.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-日期计算"><span class="nav-number">2.</span> <span class="nav-text">2.日期计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-1"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-1"><span class="nav-number">2.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-1"><span class="nav-number">2.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-2"><span class="nav-number">2.6.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-2"><span class="nav-number">2.7.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">2.8.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-1"><span class="nav-number">2.9.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-模板生成系统"><span class="nav-number">3.</span> <span class="nav-text">3.模板生成系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-2"><span class="nav-number">3.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-2"><span class="nav-number">3.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">3.4.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定-1"><span class="nav-number">3.5.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-2"><span class="nav-number">3.6.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-2"><span class="nav-number">3.7.</span> <span class="nav-text">源代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vivianhy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://vivianhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/08/10/CCF201509/';
+          this.page.identifier = '2017/08/10/CCF201509/';
+          this.page.title = 'CCF_201509';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://vivianhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
