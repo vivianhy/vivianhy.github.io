@@ -1,0 +1,834 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C语言,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vivian's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.门禁系统问题描述　　涛涛最近要负责图书馆的管理工作，需要记录下每天读者的到访情况。每位读者有一个编号，每条记录用读者的编号来表示。给出读者的来访记录，请问每一条记录中的读者是第几次出现。
+输入格式　　输入的第一行包含一个整数n，表示涛涛的记录条数。　　第二行包含n个整数，依次表示涛涛的记录中每位读者的编号。
+输出格式　　输出一行，包含n个整数，由空格分隔，依次表示每条记录中的读者编号是第几次出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCF_201412">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/CCF201412/index.html">
+<meta property="og:site_name" content="Vivian's Blog">
+<meta property="og:description" content="1.门禁系统问题描述　　涛涛最近要负责图书馆的管理工作，需要记录下每天读者的到访情况。每位读者有一个编号，每条记录用读者的编号来表示。给出读者的来访记录，请问每一条记录中的读者是第几次出现。
+输入格式　　输入的第一行包含一个整数n，表示涛涛的记录条数。　　第二行包含n个整数，依次表示涛涛的记录中每位读者的编号。
+输出格式　　输出一行，包含n个整数，由空格分隔，依次表示每条记录中的读者编号是第几次出">
+<meta property="og:updated_time" content="2017-08-15T14:47:16.496Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CCF_201412">
+<meta name="twitter:description" content="1.门禁系统问题描述　　涛涛最近要负责图书馆的管理工作，需要记录下每天读者的到访情况。每位读者有一个编号，每条记录用读者的编号来表示。给出读者的来访记录，请问每一条记录中的读者是第几次出现。
+输入格式　　输入的第一行包含一个整数n，表示涛涛的记录条数。　　第二行包含n个整数，依次表示涛涛的记录中每位读者的编号。
+输出格式　　输出一行，包含n个整数，由空格分隔，依次表示每条记录中的读者编号是第几次出">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/CCF201412/"/>
+
+
+
+
+
+  <title> CCF_201412 | Vivian's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vivian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/CCF201412/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vivianhy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vivian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CCF_201412
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T22:43:40+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CCF/" itemprop="url" rel="index">
+                    <span itemprop="name">CCF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/14/CCF201412/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/14/CCF201412/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-门禁系统"><a href="#1-门禁系统" class="headerlink" title="1.门禁系统"></a>1.门禁系统</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　涛涛最近要负责图书馆的管理工作，需要记录下每天读者的到访情况。每位读者有一个编号，每条记录用读者的编号来表示。给出读者的来访记录，请问每一条记录中的读者是第几次出现。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含一个整数n，表示涛涛的记录条数。<br>　　第二行包含n个整数，依次表示涛涛的记录中每位读者的编号。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出一行，包含n个整数，由空格分隔，依次表示每条记录中的读者编号是第几次出现。</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>5<br>1 2 1 1 3</p>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>1 1 2 3 1</p>
+<h3 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>　　1≤n≤1,000，读者的编号为不超过n的正整数。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对于每一个数组元素，统计该元素到目前为止出现的次数。<br><a id="more"></a></p>
+<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int n,i,j;</div><div class="line">	int a[1000];</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">		scanf(&quot;%d&quot;,&amp;a[i]);</div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">	&#123;</div><div class="line">		int count=0;</div><div class="line">		for(j=0;j&lt;=i;j++)</div><div class="line">		&#123;</div><div class="line">			if(a[j]==a[i])</div><div class="line">				count++;</div><div class="line">		&#125;</div><div class="line">		if(i!=n-1)</div><div class="line">			printf(&quot;%d &quot;,count);</div><div class="line">		else</div><div class="line">			printf(&quot;%d\n&quot;,count);</div><div class="line">	&#125;</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-Z字形扫描"><a href="#2-Z字形扫描" class="headerlink" title="2.Z字形扫描"></a>2.Z字形扫描</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　在图像编码的算法中，需要将一个给定的方形矩阵进行Z字形扫描(Zigzag Scan)。<br>　　对于下面的4×4的矩阵，<br>　　1 5 3 9<br>　　3 7 5 6<br>　　9 4 6 4<br>　　7 3 1 3<br>　　对其进行Z字形扫描后得到长度为16的序列：<br>　　1 5 3 9 7 3 9 5 4 7 3 6 6 4 1 3<br>　　请实现一个Z字形扫描的程序，给定一个n×n的矩阵，输出对这个矩阵进行Z字形扫描的结果。</p>
+<h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含一个整数n，表示矩阵的大小。<br>　　输入的第二行到第n+1行每行包含n个正整数，由空格分隔，表示给定的矩阵。</p>
+<h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出一行，包含n×n个整数，由空格分隔，表示输入的矩阵经过Z字形扫描后的结果。</p>
+<h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h3><p>4<br>1 5 3 9<br>3 7 5 6<br>9 4 6 4<br>7 3 1 3</p>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h3><p>1 5 3 9 7 3 9 5 4 7 3 6 6 4 1 3</p>
+<h3 id="评测用例规模与约定-1"><a href="#评测用例规模与约定-1" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>　　1≤n≤500，矩阵元素为不超过1000的正整数。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>根据前一个扫描方位和矩阵边界条件判断下一个扫描方位。<br>结构体数组direct中存储的值对应四个方位：东、南、西南、东北。<br>边界条件的判断要注意顺序。</p>
+<h3 id="源代码-1"><a href="#源代码-1" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line"></div><div class="line">int a[500][500];</div><div class="line"></div><div class="line">struct direction&#123;</div><div class="line">	int i;</div><div class="line">	int j;</div><div class="line">&#125;direct[4]=&#123;&#123;0,1&#125;,&#123;1,0&#125;,&#123;1,-1&#125;,&#123;-1,1&#125;&#125;;</div><div class="line"></div><div class="line">const int East = 0;  </div><div class="line">const int South = 1;  </div><div class="line">const int SouthWest = 2;  </div><div class="line">const int NorthEast = 3;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int n,i,j;</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">		for(j=0;j&lt;n;j++)</div><div class="line">			scanf(&quot;%d&quot;,&amp;a[i][j]);</div><div class="line">	i=0;</div><div class="line">	j=0;</div><div class="line">	int next=East;</div><div class="line">	printf(&quot;%d &quot;,a[i][j]);</div><div class="line">	while(i&lt;n-1 || j&lt;n-1)</div><div class="line">	&#123;</div><div class="line">		i=i+direct[next].i;</div><div class="line">		j=j+direct[next].j;</div><div class="line">		printf(&quot;%d &quot;,a[i][j]);</div><div class="line">		if(next == East &amp;&amp; i==0)</div><div class="line">			next=SouthWest;</div><div class="line">		else if(next == East &amp;&amp; i==n-1)</div><div class="line">			next=NorthEast;</div><div class="line">		else if(next == South &amp;&amp; j==0)</div><div class="line">			next=NorthEast;</div><div class="line">		else if(next == South &amp;&amp; j==n-1)</div><div class="line">			next=SouthWest;</div><div class="line">		else if(next == NorthEast &amp;&amp; j==n-1) //此时i可能为0</div><div class="line">			next=South;</div><div class="line">		else if(next == NorthEast &amp;&amp; i==0) </div><div class="line">			next=East;	</div><div class="line">		else if(next == SouthWest &amp;&amp; i==n-1) //此时j可能为0</div><div class="line">			next=East;</div><div class="line">		else if(next == SouthWest &amp;&amp; j==0)</div><div class="line">			next=South;</div><div class="line">	&#125;</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-集合竞价"><a href="#3-集合竞价" class="headerlink" title="3.集合竞价"></a>3.集合竞价</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　某股票交易所请你编写一个程序，根据开盘前客户提交的订单来确定某特定股票的开盘价和开盘成交量。<br>　　该程序的输入由很多行构成，每一行为一条记录，记录可能有以下几种：<br>　　1. buy p s 表示一个购买股票的买单，每手出价为p，购买股数为s。<br>　　2. sell p s 表示一个出售股票的卖单，每手出价为p，出售股数为s。<br>　　3. cancel i表示撤销第i行的记录。<br>　　如果开盘价为p0，则系统可以将所有出价至少为p0的买单和所有出价至多为p0的卖单进行匹配。因此，此时的开盘成交量为出价至少为p0的买单的总股数和所有出价至多为p0的卖单的总股数之间的较小值。<br>　　你的程序需要确定一个开盘价，使得开盘成交量尽可能地大。如果有多个符合条件的开盘价，你的程序应当输出最高的那一个。</p>
+<h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入数据有任意多行，每一行是一条记录。保证输入合法。股数为不超过10<sup style="margin: 0px; padding: 0px;">8</sup>的正整数，出价为精确到恰好小数点后两位的正实数，且不超过10000.00。</p>
+<h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　你需要输出一行，包含两个数，以一个空格分隔。第一个数是开盘价，第二个是此开盘价下的成交量。开盘价需要精确到小数点后恰好两位。</p>
+<h3 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h3><p>buy 9.25 100<br>buy 8.88 175<br>sell 9.00 1000<br>buy 9.00 400<br>sell 8.92 400<br>cancel 1<br>buy 100.00 50</p>
+<h3 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h3><p>9.00 450</p>
+<h3 id="评测用例规模与约定-2"><a href="#评测用例规模与约定-2" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>　　对于100%的数据，输入的行数不超过5000。</p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>用结构体数组record存储记录。结构体中的flag标志该记录是否有效（对于buy和sell）。结构体result存放最终开盘价及开盘成交量。<br>根据记录的第一个字符串判断是哪种记录，对于cancel记录，要根据cancel后的整数i确定要撤销第i行记录（flag标志位置为0）。<br>将每个buy和sell记录中的出价p作为待定开盘价p0，并针对该p0对记录进行遍历，对买单和卖单进行匹配并计算开盘成交量。<br>取最大的开盘成交量，开盘成交量相同时，取较大的开盘价。<br>程序有一个bug，没找出来，提交得分80。</p>
+<h3 id="源代码-2"><a href="#源代码-2" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line">struct record&#123;</div><div class="line">	int id; //buy:1,sell:2,cancel:3</div><div class="line">	double p;</div><div class="line">	long long s;</div><div class="line">	int flag; //对于buy和sell，记录是否有效</div><div class="line">&#125;record[5001];</div><div class="line"></div><div class="line">struct result&#123;</div><div class="line">	double p;</div><div class="line">	long long amount;</div><div class="line">&#125;result;</div><div class="line"></div><div class="line">long long min(long long x,long long y)</div><div class="line">&#123;</div><div class="line">	if(x&lt;=y)</div><div class="line">		return x;</div><div class="line">	else</div><div class="line">		return y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	char a[10];</div><div class="line">	int count=1;</div><div class="line">	int i,j;</div><div class="line">	//输入</div><div class="line">	while((scanf(&quot;%s&quot;,a))!=EOF)</div><div class="line">	&#123;</div><div class="line">		if(strcmp(a,&quot;buy&quot;)==0)</div><div class="line">		&#123;</div><div class="line">			record[count].id=1;</div><div class="line">			scanf(&quot;%lf&quot;,&amp;record[count].p);</div><div class="line">			scanf(&quot;%lld&quot;,&amp;record[count].s);</div><div class="line">			record[count].flag=1;</div><div class="line">		&#125;</div><div class="line">		else if(strcmp(a,&quot;sell&quot;)==0)</div><div class="line">		&#123;</div><div class="line">			record[count].id=2;</div><div class="line">			scanf(&quot;%lf&quot;,&amp;record[count].p);</div><div class="line">			scanf(&quot;%lld&quot;,&amp;record[count].s);</div><div class="line">			record[count].flag=1;</div><div class="line">		&#125;</div><div class="line">		else if(strcmp(a,&quot;cancel&quot;)==0)</div><div class="line">		&#123;</div><div class="line">			record[count].id=3;</div><div class="line">			scanf(&quot;%d&quot;,&amp;record[count].s);</div><div class="line">			record[record[count].s].flag=0; //撤销第record[count].s行的记录</div><div class="line">		&#125;</div><div class="line">		count++;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	double p0;</div><div class="line">	long long s0;</div><div class="line">	result.p=0;</div><div class="line">	result.amount=0;</div><div class="line">	for(i=1;i&lt;count;i++)</div><div class="line">	&#123;</div><div class="line">		long long sum1=0,sum2=0;</div><div class="line">		if((record[i].id==1 || record[i].id==2) &amp;&amp; record[i].flag==1)</div><div class="line">		&#123;</div><div class="line">			p0=record[i].p;//开盘价</div><div class="line">			for(j=1;j&lt;count;j++)</div><div class="line">			&#123;</div><div class="line">				if(record[j].id==1 &amp;&amp; record[j].flag==1 &amp;&amp; record[j].p&gt;=p0)</div><div class="line">					sum1=sum1+record[j].s;</div><div class="line">				if(record[j].id==2 &amp;&amp; record[j].flag==1 &amp;&amp; record[j].p&lt;=p0)</div><div class="line">					sum2=sum2+record[j].s;</div><div class="line">			&#125;</div><div class="line">			s0=min(sum1,sum2); //开盘成交量</div><div class="line">			//开盘成交量最大</div><div class="line">			if(s0&gt;result.amount)</div><div class="line">			&#123;</div><div class="line">				result.p=p0;</div><div class="line">				result.amount=s0;</div><div class="line">			&#125;</div><div class="line">			//开盘成交量相同时，开盘价最高</div><div class="line">			else if(s0==result.amount &amp;&amp; p0&gt;result.p)</div><div class="line">			&#123;</div><div class="line">				result.p=p0;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	printf(&quot;%.2lf %lld&quot;,result.p,result.amount);</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"># C语言</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/12/CCF201503/" rel="next" title="CCF_201503">
+                <i class="fa fa-chevron-left"></i> CCF_201503
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Vivianhy" />
+          <p class="site-author-name" itemprop="name">Vivianhy</p>
+           
+              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/vivianhy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=s8XaxdrS3dvK88LCndDc3g" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-门禁系统"><span class="nav-number">1.</span> <span class="nav-text">1.门禁系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定"><span class="nav-number">1.6.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.7.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.8.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Z字形扫描"><span class="nav-number">2.</span> <span class="nav-text">2.Z字形扫描</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-1"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-1"><span class="nav-number">2.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-1"><span class="nav-number">2.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定-1"><span class="nav-number">2.6.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">2.7.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-1"><span class="nav-number">2.8.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-集合竞价"><span class="nav-number">3.</span> <span class="nav-text">3.集合竞价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-2"><span class="nav-number">3.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-2"><span class="nav-number">3.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-2"><span class="nav-number">3.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-2"><span class="nav-number">3.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定-2"><span class="nav-number">3.6.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-2"><span class="nav-number">3.7.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-2"><span class="nav-number">3.8.</span> <span class="nav-text">源代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vivianhy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://vivianhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/08/14/CCF201412/';
+          this.page.identifier = '2017/08/14/CCF201412/';
+          this.page.title = 'CCF_201412';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://vivianhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
