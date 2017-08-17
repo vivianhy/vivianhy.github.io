@@ -1,0 +1,845 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C语言,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vivian's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.中间数问题描述　　在一个整数序列a1, a2, …, an中，如果存在某个数，大于它的整数数量等于小于它的整数数量，则称其为中间数。在一个序列中，可能存在多个下标不相同的中间数，这些中间数的值是相同的。　　给定一个整数序列，请找出这个整数序列的中间数的值。
+输入格式　　输入的第一行包含了一个整数n，表示整数序列中数的个数。　　第二行包含n个正整数，依次表示a1, a2, …, an。
+输出格式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCF_201612">
+<meta property="og:url" content="http://yoursite.com/2017/08/17/CCF201612/index.html">
+<meta property="og:site_name" content="Vivian's Blog">
+<meta property="og:description" content="1.中间数问题描述　　在一个整数序列a1, a2, …, an中，如果存在某个数，大于它的整数数量等于小于它的整数数量，则称其为中间数。在一个序列中，可能存在多个下标不相同的中间数，这些中间数的值是相同的。　　给定一个整数序列，请找出这个整数序列的中间数的值。
+输入格式　　输入的第一行包含了一个整数n，表示整数序列中数的个数。　　第二行包含n个正整数，依次表示a1, a2, …, an。
+输出格式">
+<meta property="og:updated_time" content="2017-08-17T15:50:13.721Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CCF_201612">
+<meta name="twitter:description" content="1.中间数问题描述　　在一个整数序列a1, a2, …, an中，如果存在某个数，大于它的整数数量等于小于它的整数数量，则称其为中间数。在一个序列中，可能存在多个下标不相同的中间数，这些中间数的值是相同的。　　给定一个整数序列，请找出这个整数序列的中间数的值。
+输入格式　　输入的第一行包含了一个整数n，表示整数序列中数的个数。　　第二行包含n个正整数，依次表示a1, a2, …, an。
+输出格式">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/17/CCF201612/"/>
+
+
+
+
+
+  <title> CCF_201612 | Vivian's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vivian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/17/CCF201612/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vivianhy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vivian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CCF_201612
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T23:46:56+08:00">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CCF/" itemprop="url" rel="index">
+                    <span itemprop="name">CCF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/17/CCF201612/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/17/CCF201612/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-中间数"><a href="#1-中间数" class="headerlink" title="1.中间数"></a>1.中间数</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　在一个整数序列a<sub style="margin: 0px; padding: 0px;">1</sub>, a<sub style="margin: 0px; padding: 0px;">2</sub>, …, a<sub style="margin: 0px; padding: 0px;">n</sub>中，如果存在某个数，大于它的整数数量等于小于它的整数数量，则称其为中间数。在一个序列中，可能存在多个下标不相同的中间数，这些中间数的值是相同的。<br>　　给定一个整数序列，请找出这个整数序列的中间数的值。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含了一个整数n，表示整数序列中数的个数。<br>　　第二行包含n个正整数，依次表示a<sub style="margin: 0px; padding: 0px;">1</sub>, a<sub style="margin: 0px; padding: 0px;">2</sub>, …, a<sub style="margin: 0px; padding: 0px;">n</sub>。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　如果约定序列的中间数存在，则输出中间数的值，否则输出-1表示不存在中间数。</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>6<br>2 6 5 6 3 5</p>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>5</p>
+<h3 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h3><p>　　比5小的数有2个，比5大的数也有2个。</p>
+<h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h3><p>4<br>3 4 6 7</p>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h3><p>-1</p>
+<h3 id="样例说明-1"><a href="#样例说明-1" class="headerlink" title="样例说明"></a>样例说明</h3><p>　　在序列中的4个数都不满足中间数的定义。</p>
+<h3 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h3><p>5<br>3 4 6 6 7</p>
+<h3 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h3><p>-1</p>
+<h3 id="样例说明-2"><a href="#样例说明-2" class="headerlink" title="样例说明"></a>样例说明</h3><p>　　在序列中的5个数都不满足中间数的定义。</p>
+<h3 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>　　对于所有评测用例，1 ≤ n ≤ 1000，1 ≤ a<sub style="margin: 0px; padding: 0px;">i</sub> ≤ 1000。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对每一个数组元素，遍历数组，统计大于它的整数数量和小于它的整数数量，若相等，则该数为中位数。<br>若不存在这样的数组元素，则输出-1。<br><a id="more"></a></p>
+<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int n;</div><div class="line">	int a[1000];</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	int i,j;</div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">		scanf(&quot;%d&quot;,&amp;a[i]);</div><div class="line">	int count1,count2;</div><div class="line">	int t;</div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">	&#123;</div><div class="line">		t=a[i];</div><div class="line">		count1=count2=0;</div><div class="line">		for(j=0;j&lt;n;j++)</div><div class="line">		&#123;</div><div class="line">			if(a[j]&gt;t)</div><div class="line">				count1++;</div><div class="line">			else if(a[j]&lt;t)</div><div class="line">				count2++;</div><div class="line">		&#125;</div><div class="line">		if(count1==count2)</div><div class="line">			break;</div><div class="line">	&#125;</div><div class="line">	if(i!=n)</div><div class="line">		printf(&quot;%d&quot;,a[i]);</div><div class="line">	else</div><div class="line">		printf(&quot;%d&quot;,-1);</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-工资计算"><a href="#2-工资计算" class="headerlink" title="2.工资计算"></a>2.工资计算</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　小明的公司每个月给小明发工资，而小明拿到的工资为交完个人所得税之后的工资。假设他一个月的税前工资（扣除五险一金后、未扣税前的工资）为S元，则他应交的个人所得税按如下公式计算：<br>　　1） 个人所得税起征点为3500元，若S不超过3500，则不交税，3500元以上的部分才计算个人所得税，令A=S-3500元；<br>　　2） A中不超过1500元的部分，税率3%；<br>　　3） A中超过1500元未超过4500元的部分，税率10%；<br>　　4） A中超过4500元未超过9000元的部分，税率20%；<br>　　5） A中超过9000元未超过35000元的部分，税率25%；<br>　　6） A中超过35000元未超过55000元的部分，税率30%；<br>　　7） A中超过55000元未超过80000元的部分，税率35%；<br>　　8） A中超过80000元的部分，税率45%；<br>　　例如，如果小明的税前工资为10000元，则A=10000-3500=6500元，其中不超过1500元部分应缴税1500×3%=45元，超过1500元不超过4500元部分应缴税(4500-1500)×10%=300元，超过4500元部分应缴税(6500-4500)×20%=400元。总共缴税745元，税后所得为9255元。<br>　　已知小明这个月税后所得为T元，请问他的税前工资S是多少元。</p>
+<h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行包含一个整数T，表示小明的税后所得。所有评测数据保证小明的税前工资为一个整百的数。</p>
+<h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出一个整数S，表示小明的税前工资。</p>
+<h3 id="样例输入-3"><a href="#样例输入-3" class="headerlink" title="样例输入"></a>样例输入</h3><p>9255</p>
+<h3 id="样例输出-3"><a href="#样例输出-3" class="headerlink" title="样例输出"></a>样例输出</h3><p>10000</p>
+<h3 id="评测用例规模与约定-1"><a href="#评测用例规模与约定-1" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>　　对于所有评测用例，1 ≤ T ≤ 100000。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于T ≤ 100000，估算一下知道S一定小于200000，因此对S的值进行穷举，若计算得到的税后工资等于T，则该S就是税前工资。<br>要注意的是，计算税金要用float型变量存储。</p>
+<h3 id="源代码-1"><a href="#源代码-1" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int T;</div><div class="line">	int S,A;</div><div class="line">	float temp;</div><div class="line">	scanf(&quot;%d&quot;,&amp;T);</div><div class="line">	for(S=0;S&lt;=200000;S+=100)</div><div class="line">	&#123;</div><div class="line">		if(S&lt;=3500)</div><div class="line">			temp=S;</div><div class="line">		else</div><div class="line">		&#123;</div><div class="line">			A=S-3500;</div><div class="line">			if(A&lt;=1500)</div><div class="line">				temp=S-(A*0.03);</div><div class="line">			else if(A&gt;1500 &amp;&amp; A&lt;=4500)</div><div class="line">				temp=S-(1500*0.03+(A-1500)*0.1);</div><div class="line">			else if(A&gt;4500 &amp;&amp; A&lt;=9000)</div><div class="line">				temp=S-(1500*0.03+(4500-1500)*0.1+(A-4500)*0.2);</div><div class="line">			else if(A&gt;9000 &amp;&amp; A&lt;=35000)</div><div class="line">				temp=S-(1500*0.03+(4500-1500)*0.1+(9000-4500)*0.2+(A-9000)*0.25);</div><div class="line">			else if(A&gt;35000 &amp;&amp; A&lt;=55000)</div><div class="line">				temp=S-(1500*0.03+(4500-1500)*0.1+(9000-4500)*0.2+(35000-9000)*0.25+(A-35000)*0.3);</div><div class="line">			else if(A&gt;55000 &amp;&amp; A&lt;=80000)</div><div class="line">				temp=S-(1500*0.03+(4500-1500)*0.1+(9000-4500)*0.2+(35000-9000)*0.25+(55000-35000)*0.3+(A-55000)*0.35);</div><div class="line">			else if(A&gt;80000)</div><div class="line">				temp=S-(1500*0.03+(4500-1500)*0.1+(9000-4500)*0.2+(35000-9000)*0.25+(55000-35000)*0.3+(80000-55000)*0.35+(A-80000)*0.45);</div><div class="line">		&#125;</div><div class="line">		if(temp==T)</div><div class="line">		&#123;</div><div class="line">			printf(&quot;%d&quot;,S);</div><div class="line">			break;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-权限查询"><a href="#3-权限查询" class="headerlink" title="3.权限查询"></a>3.权限查询</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　授权 (authorization) 是各类业务系统不可缺少的组成部分，系统用户通过授权机制获得系统中各个模块的操作权限。<br>　　本题中的授权机制是这样设计的：每位用户具有若干角色，每种角色具有若干权限。例如，用户 david 具有 manager 角色，manager 角色有 crm:2 权限，则用户 david 具有 crm:2 权限，也就是 crm 类权限的第 2 等级的权限。<br>　　具体地，用户名和角色名称都是由小写字母组成的字符串，长度不超过 32。权限分为分等级权限和不分等级权限两大类。分等级权限由权限类名和权限等级构成，中间用冒号“:”分隔。其中权限类名也是由小写字母组成的字符串，长度不超过 32。权限等级是一位数字，从 0 到 9，数字越大表示权限等级越高。系统规定如果用户具有某类某一等级的权限，那么他也将自动具有该类更低等级的权限。例如在上面的例子中，除 crm:2 外，用户 david 也具有 crm:1 和 crm:0 权限。不分等级权限在描述权限时只有权限类名，没有权限等级（也没有用于分隔的冒号）。<br>　　给出系统中用户、角色和权限的描述信息，你的程序需要回答多个关于用户和权限的查询。查询可分为以下几类：</p>
+<ul>
+<li>不分等级权限的查询：如果权限本身是不分等级的，则查询时不指定等级，返回是否具有该权限；</li>
+<li>分等级权限的带等级查询：如果权限本身分等级，查询也带等级，则返回是否具有该类的该等级权限；</li>
+<li>分等级权限的不带等级查询：如果权限本身分等级，查询不带等级，则返回具有该类权限的等级；如果不具有该类的任何等级权限，则返回“否”。<h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3>　　输入第一行是一个正整数 p，表示不同的权限类别的数量。紧接着的 p 行被称为 P 段，每行一个字符串，描述各个权限。对于分等级权限，格式为 <code>&lt;category&gt;:&lt;level&gt;</code>，其中<code>&lt;category&gt;</code>是权限类名，<code>&lt;level&gt;</code> 是该类权限的最高等级。对于不分等级权限，字符串只包含权限类名。<br>　　接下来一行是一个正整数 r，表示不同的角色数量。紧接着的 r 行被称为 R 段，每行描述一种角色，格式为<br>　　<code>&lt;role&gt; &lt;s&gt; &lt;privilege 1&gt; &lt;privilege 2&gt; ... &lt;privilege s&gt;</code><br>　　其中 <code>&lt;role&gt;</code> 是角色名称，<code>&lt;s&gt;</code> 表示该角色具有多少种权限。后面 <code>&lt;s&gt;</code>个字符串描述该角色具有的权限，格式同 P 段。<br>　　接下来一行是一个正整数 u，表示用户数量。紧接着的 u 行被称为 U 段，每行描述一个用户，格式为<br>　　<code>&lt;user&gt; &lt;t&gt; &lt;role 1&gt; &lt;role 2&gt; ... &lt;role t&gt;</code><br>　　其中 <code>&lt;user&gt;</code> 是用户名，<code>&lt;t&gt;</code> 表示该用户具有多少种角色。后面 <code>&lt;t&gt;</code> 个字符串描述该用户具有的角色。<br>　　接下来一行是一个正整数 q，表示权限查询的数量。紧接着的 q 行被称为 Q 段，每行描述一个授权查询，格式为 <code>&lt;user&gt; &lt;privilege&gt;</code>，表示查询用户 <code>&lt;user&gt;</code> 是否具有 <code>&lt;privilege&gt;</code> 权限。如果查询的权限是分等级权限，则查询中的 <code>&lt;privilege&gt;</code> 可指定等级，表示查询该用户是否具有该等级的权限；也可以不指定等级，表示查询该用户具有该权限的等级。对于不分等级权限，只能查询该用户是否具有该权限，查询中不能指定等级。<h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3>　　输出共 q 行，每行为 false、true，或者一个数字。false 表示相应的用户不具有相应的权限，true 表示相应的用户具有相应的权限。对于分等级权限的不带等级查询，如果具有权限，则结果是一个数字，表示该用户具有该权限的（最高）等级。如果用户不存在，或者查询的权限没有定义，则应该返回 false。<br>样例输入<br>3<br>crm:2<br>git:3<br>game<br>4<br>hr 1 crm:2<br>it 3 crm:1 git:1 game<br>dev 2 git:3 game<br>qa 1 git:2<br>3<br>alice 1 hr<br>bob 2 it qa<br>charlie 1 dev<br>9<br>alice game<br>alice crm:2<br>alice git:0<br>bob git<br>bob poweroff<br>charlie game<br>charlie crm<br>charlie git:3<br>malice game<br>样例输出<br>false<br>true<br>false<br>2<br>false<br>true<br>false<br>true<br>false<h3 id="样例说明-3"><a href="#样例说明-3" class="headerlink" title="样例说明"></a>样例说明</h3>　　样例输入描述的场景中，各个用户实际的权限如下：<br>　　<em> 用户 alice 具有 crm:2 权限
+　　</em> 用户 bob 具有 crm:1、git:2 和 game 权限<br>　　<em> 用户 charlie 具有 git:3 和 game 权限
+　　</em> 用户 malice 未描述，因此不具有任何权限<h3 id="评测用例规模与约定-2"><a href="#评测用例规模与约定-2" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3>　　评测用例规模：<br>　　<em> 1 ≤ p, r, u ≤ 100
+　　</em> 1 ≤ q ≤ 10 000<br>　　<em> 每个用户具有的角色数不超过 10，每种角色具有的权限种类不超过 10<br>　　约定：
+　　</em> 输入保证合法性，包括：<br>　　1) 角色对应的权限列表（R 段）中的权限都是之前（P 段）出现过的，权限可以重复出现，如果带等级的权限重复出现，以等级最高的为准<br>　　2) 用户对应的角色列表（U 段）中的角色都是之前（R 段）出现过的，如果多个角色都具有某一分等级权限，以等级最高的为准<br>　　3) 查询（Q 段）中的用户名和权限类名不保证在之前（U 段和 P 段）出现过<br>　　<em> 前 20% 的评测用例只有一种角色
+　　</em> 前 50% 的评测用例权限都是不分等级的，查询也都不带等级<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3>首先根据用户拥有的角色，遍历角色表进行匹配，找到这些角色拥有的权限，这些权限就是该用户拥有的权限。<br>然后根据输入的用户与权限，遍历用户表进行用户匹配，若匹配成功，则遍历该用户拥有的权限进行权限匹配。匹配有三种情况：<br>1.不分等级权限的匹配：权限名匹配成功，且权限结构体中的flag标志位为0。<br>2.分等级权限的带等级匹配：权限名匹配成功，且权限结构体中的flag标志位为1。若输入的待查询权限是没有等级的，等级level设置为100，由此区分带等级匹配和不带等级匹配。要注意的是，对于带等级的匹配，只要用户拥有该权限且等级大于等于输入的待查询权限等级，则匹配成功。<br>3.分等级权限的不带等级匹配：需要遍历用户拥有的权限，对所有匹配成功的权限及等级选取最高的等级。<br>具体逻辑见注释。<h3 id="源代码-2"><a href="#源代码-2" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line"></div><div class="line">typedef struct Privilege&#123; //权限</div><div class="line">	int flag; //0为不分等级权限，1为分等级权限</div><div class="line">	char category[33];</div><div class="line">	int level;</div><div class="line">&#125;Privilege;</div><div class="line">Privilege privilege[100],inpri;</div><div class="line"></div><div class="line">typedef struct Role&#123; //角色-权限</div><div class="line">	char rolename[33];</div><div class="line">	int t; //角色拥有的权限数</div><div class="line">	Privilege pri[10];</div><div class="line">&#125;Role;</div><div class="line">Role role[100];</div><div class="line"></div><div class="line">typedef struct User&#123; //用户-角色-权限</div><div class="line">	char username[33];</div><div class="line">	int tr; //用户拥有的角色数</div><div class="line">	char rolename[10][33];</div><div class="line">	int tp; //用户拥有的权限数</div><div class="line">	Privilege pri[100];</div><div class="line">&#125;User;</div><div class="line">User user[100];</div><div class="line"></div><div class="line">void GetPrivilege(Privilege *a) //获取输入的权限</div><div class="line">&#123;</div><div class="line">	scanf(&quot;%s&quot;,(*a).category);</div><div class="line">	char *p=(*a).category;</div><div class="line">	while(*p!=&apos;\0&apos;)</div><div class="line">		p++;</div><div class="line">	if(*(p-2)==&apos;:&apos;)</div><div class="line">	&#123;</div><div class="line">		*(p-2)=&apos;\0&apos;;</div><div class="line">		(*a).level=*(p-1)-&apos;0&apos;;</div><div class="line">		(*a).flag=1;</div><div class="line">	&#125;</div><div class="line">	else</div><div class="line">	&#123;</div><div class="line">		(*a).flag=0;</div><div class="line">		(*a).level=100; </div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int p,r,u,q;</div><div class="line">	int i,j;</div><div class="line"></div><div class="line">	//输入权限</div><div class="line">	scanf(&quot;%d&quot;,&amp;p);</div><div class="line">	for(i=0;i&lt;p;i++)</div><div class="line">		GetPrivilege(&amp;privilege[i]);</div><div class="line"></div><div class="line">	//输入角色</div><div class="line">	scanf(&quot;%d&quot;,&amp;r);</div><div class="line">	for(i=0;i&lt;r;i++)</div><div class="line">	&#123;</div><div class="line">		scanf(&quot;%s&quot;,role[i].rolename);</div><div class="line">		scanf(&quot;%d&quot;,&amp;(role[i].t));</div><div class="line">		for(j=0;j&lt;role[i].t;j++)</div><div class="line">			GetPrivilege(&amp;(role[i].pri[j]));</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	//输入用户</div><div class="line">	scanf(&quot;%d&quot;,&amp;u);</div><div class="line">	for(i=0;i&lt;u;i++)</div><div class="line">	&#123;</div><div class="line">		scanf(&quot;%s&quot;,user[i].username);</div><div class="line">		scanf(&quot;%d&quot;,&amp;(user[i].tr));</div><div class="line">		for(j=0;j&lt;user[i].tr;j++)</div><div class="line">		&#123;</div><div class="line">			scanf(&quot;%s&quot;,user[i].rolename[j]);</div><div class="line">			user[i].tp=0;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	//得到每个用户拥有的权限</div><div class="line">	int k1,k2;</div><div class="line">	for(i=0;i&lt;u;i++)</div><div class="line">	&#123;</div><div class="line">		for(j=0;j&lt;user[i].tr;j++) //遍历该用户拥有的角色</div><div class="line">		&#123;</div><div class="line">			for(k1=0;k1&lt;r;k1++)</div><div class="line">			&#123;</div><div class="line">				if(strcmp(user[i].rolename[j],role[k1].rolename)==0) //匹配角色</div><div class="line">				&#123;</div><div class="line">					for(k2=0;k2&lt;role[k1].t;k2++) //用户拥有该角色拥有的权限</div><div class="line">					&#123;</div><div class="line">						user[i].pri[user[i].tp].flag=role[k1].pri[k2].flag;</div><div class="line">						strcpy(user[i].pri[user[i].tp].category,role[k1].pri[k2].category);</div><div class="line">						user[i].pri[user[i].tp].level=role[k1].pri[k2].level;</div><div class="line">						user[i].tp++;</div><div class="line">					&#125;</div><div class="line">					break;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	//输入查询</div><div class="line">	scanf(&quot;%d&quot;,&amp;q);</div><div class="line">	char inuser[33];</div><div class="line">	int k;</div><div class="line">	for(k=0;k&lt;q;k++)</div><div class="line">	&#123;</div><div class="line">		scanf(&quot;%s&quot;,inuser);</div><div class="line">		GetPrivilege(&amp;inpri);</div><div class="line">		int level=0;</div><div class="line">		int flag=0;</div><div class="line">		for(i=0;i&lt;u;i++)</div><div class="line">		&#123;</div><div class="line">			if(strcmp(inuser,user[i].username)==0) //用户名匹配</div><div class="line">			&#123;</div><div class="line">				for(j=0;j&lt;user[i].tp;j++)</div><div class="line">				&#123;</div><div class="line">					if(strcmp(inpri.category,user[i].pri[j].category)==0) //权限匹配</div><div class="line">					&#123;</div><div class="line">						if(user[i].pri[j].flag==0) //不分等级权限</div><div class="line">						&#123;</div><div class="line">							printf(&quot;true\n&quot;);</div><div class="line">							break;</div><div class="line">						&#125;</div><div class="line">						else  //分等级权限</div><div class="line">						&#123;</div><div class="line">							if(inpri.level&lt;=9 &amp;&amp; inpri.level&lt;=user[i].pri[j].level) //分等级权限的带等级查询</div><div class="line">							&#123;</div><div class="line">								printf(&quot;true\n&quot;);</div><div class="line">								break;</div><div class="line">							&#125;</div><div class="line">							else if(inpri.level&gt;10) //分等级权限的不带等级查询</div><div class="line">							&#123;</div><div class="line">								if(level&lt;=user[i].pri[j].level)</div><div class="line">								&#123;</div><div class="line">									level=user[i].pri[j].level; //取最高的等级</div><div class="line">									flag=1;</div><div class="line">								&#125;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				if(j==user[i].tp &amp;&amp; flag==1)</div><div class="line">					printf(&quot;%d\n&quot;,level);</div><div class="line">				else if(j==user[i].tp) //权限匹配失败</div><div class="line">					printf(&quot;false\n&quot;);</div><div class="line">				break;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		if(i==u) //用户匹配失败</div><div class="line">			printf(&quot;false\n&quot;);</div><div class="line">	&#125;</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"># C语言</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/16/CCF201409/" rel="next" title="CCF_201409">
+                <i class="fa fa-chevron-left"></i> CCF_201409
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Vivianhy" />
+          <p class="site-author-name" itemprop="name">Vivianhy</p>
+           
+              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/vivianhy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=s8XaxdrS3dvK88LCndDc3g" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-中间数"><span class="nav-number">1.</span> <span class="nav-text">1.中间数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明"><span class="nav-number">1.6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-1"><span class="nav-number">1.7.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-1"><span class="nav-number">1.8.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明-1"><span class="nav-number">1.9.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-2"><span class="nav-number">1.10.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-2"><span class="nav-number">1.11.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明-2"><span class="nav-number">1.12.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定"><span class="nav-number">1.13.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.14.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.15.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-工资计算"><span class="nav-number">2.</span> <span class="nav-text">2.工资计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-1"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-3"><span class="nav-number">2.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-3"><span class="nav-number">2.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定-1"><span class="nav-number">2.6.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">2.7.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-1"><span class="nav-number">2.8.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-权限查询"><span class="nav-number">3.</span> <span class="nav-text">3.权限查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-2"><span class="nav-number">3.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-2"><span class="nav-number">3.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明-3"><span class="nav-number">3.4.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测用例规模与约定-2"><span class="nav-number">3.5.</span> <span class="nav-text">评测用例规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-2"><span class="nav-number">3.6.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-2"><span class="nav-number">3.7.</span> <span class="nav-text">源代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vivianhy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://vivianhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/08/17/CCF201612/';
+          this.page.identifier = '2017/08/17/CCF201612/';
+          this.page.title = 'CCF_201612';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://vivianhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
