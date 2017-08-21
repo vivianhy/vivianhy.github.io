@@ -1,0 +1,818 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C语言,查找," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vivian's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="查找定义及分类定义：根据给定的某个关键字值，在查找表中确定一个其关键字等于给定值的记录或数据元素。分类：静态查找：查询某个特定的元素，检查某个特定的数据元素的属性,不插入新元素或删除元素(记录) 。动态查找：在查找过程中，同时插入查找表中不存在的数据元素(记录)。
+查找表的类型及其查找方法(1) 静态查找表   ● 顺序表：顺序查找法   ● 线性链表：顺序查找法   ● 有序的顺序表：折半查找法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用查找算法实现">
+<meta property="og:url" content="http://yoursite.com/2017/08/20/常用查找算法实现/index.html">
+<meta property="og:site_name" content="Vivian's Blog">
+<meta property="og:description" content="查找定义及分类定义：根据给定的某个关键字值，在查找表中确定一个其关键字等于给定值的记录或数据元素。分类：静态查找：查询某个特定的元素，检查某个特定的数据元素的属性,不插入新元素或删除元素(记录) 。动态查找：在查找过程中，同时插入查找表中不存在的数据元素(记录)。
+查找表的类型及其查找方法(1) 静态查找表   ● 顺序表：顺序查找法   ● 线性链表：顺序查找法   ● 有序的顺序表：折半查找法">
+<meta property="og:updated_time" content="2017-08-21T16:20:16.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用查找算法实现">
+<meta name="twitter:description" content="查找定义及分类定义：根据给定的某个关键字值，在查找表中确定一个其关键字等于给定值的记录或数据元素。分类：静态查找：查询某个特定的元素，检查某个特定的数据元素的属性,不插入新元素或删除元素(记录) 。动态查找：在查找过程中，同时插入查找表中不存在的数据元素(记录)。
+查找表的类型及其查找方法(1) 静态查找表   ● 顺序表：顺序查找法   ● 线性链表：顺序查找法   ● 有序的顺序表：折半查找法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/20/常用查找算法实现/"/>
+
+
+
+
+
+  <title> 常用查找算法实现 | Vivian's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vivian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/20/常用查找算法实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vivianhy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vivian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用查找算法实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T21:26:35+08:00">
+                2017-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/20/常用查找算法实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/20/常用查找算法实现/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="查找定义及分类"><a href="#查找定义及分类" class="headerlink" title="查找定义及分类"></a>查找定义及分类</h2><p><strong>定义：</strong>根据给定的某个关键字值，在查找表中确定一个其关键字等于给定值的记录或数据元素。<br><strong>分类：</strong><br>静态查找：查询某个特定的元素，检查某个特定的数据元素的属性,不插入新元素或删除元素(记录) 。<br>动态查找：在查找过程中，同时插入查找表中不存在的数据元素(记录)。</p>
+<h2 id="查找表的类型及其查找方法"><a href="#查找表的类型及其查找方法" class="headerlink" title="查找表的类型及其查找方法"></a>查找表的类型及其查找方法</h2><p>(1) 静态查找表<br>   ● 顺序表：顺序查找法<br>   ● 线性链表：顺序查找法<br>   ● 有序的顺序表：折半查找法；插值查找法；<br>   ● 索引顺序表/分块表：分块查找法。<br>(2) 动态查找表<br>   ● 二叉排序树,平衡二叉树(AVL树）<br>   ● B树, B+树, 键树<br>(3) 哈希(Hash)表<br><a id="more"></a></p>
+<h2 id="1-顺序查找"><a href="#1-顺序查找" class="headerlink" title="1.顺序查找"></a>1.顺序查找</h2><p><strong>时间复杂度为O(n)</strong><br>C语言实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line"></div><div class="line">int SeqSearch(int a[],int n,int key)</div><div class="line">&#123;</div><div class="line">    int i;</div><div class="line">    for(i=0;i&lt;n;i++)</div><div class="line">    &#123;</div><div class="line">        if(a[i]==key)</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    if(i!=n)</div><div class="line">        return i;</div><div class="line">    else</div><div class="line">        return -1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int ret;</div><div class="line">    int a[]=&#123;2,4,6,8,10,11&#125;;</div><div class="line">    ret=SeqSearch(a,6,10);</div><div class="line">    printf(&quot;%d\n&quot;,ret);</div><div class="line">    ret=SeqSearch(a,6,20);</div><div class="line">    printf(&quot;%d\n&quot;,ret);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2-二分查找（折半查找）"><a href="#2-二分查找（折半查找）" class="headerlink" title="2.二分查找（折半查找）"></a>2.二分查找（折半查找）</h2><p><strong>注意：</strong>二分查找针对有序表，若无序则要先进行排序操作<br><strong>时间复杂度为O(log2n)</strong><br>C语言实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line"></div><div class="line">int BinarySearch(int a[],int n,int key)</div><div class="line">&#123;</div><div class="line">    int low,mid,high;</div><div class="line">    low=0;</div><div class="line">    high=n-1;</div><div class="line">    while(low&lt;=high)</div><div class="line">    &#123;</div><div class="line">        mid=(low+high)/2;</div><div class="line">        if(a[mid]==key)</div><div class="line">            break;</div><div class="line">        else if(a[mid]&lt;key)</div><div class="line">            low=mid+1;</div><div class="line">        else</div><div class="line">            high=mid-1;</div><div class="line">    &#125;</div><div class="line">    if(low&lt;=high)</div><div class="line">        return mid;</div><div class="line">    else</div><div class="line">        return -1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int a[]=&#123;1,2,3,4,5,6,7,8&#125;; //有序数组</div><div class="line">    int ret;</div><div class="line">    ret=BinarySearch(a,8,3);</div><div class="line">    printf(&quot;%d\n&quot;,ret);</div><div class="line">    ret=BinarySearch(a,8,10);</div><div class="line">    printf(&quot;%d\n&quot;,ret);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="3-插值查找"><a href="#3-插值查找" class="headerlink" title="3.插值查找"></a>3.插值查找</h2><p>二分查找的查找方式，不是自适应的，查找点计算如下：<br><code>mid=(low+high)/2, 即mid=low+1/2*(high-low);</code><br>对于插值查找，将查找的点改进如下：<br><code>mid=low+(key-a[low])/(a[high]-a[low])*(high-low)</code><br><strong>说明：</strong>将上述的比例参数1/2改进为自适应的，根据关键字在整个有序表中所处的位置，让mid值的变化更靠近关键字key，这样也就间接地减少了比较次数。<br>插值查找除了mid的计算方式和二分查找不同，其余的一样。</p>
+<h2 id="4-二叉排序树（二叉查找树）"><a href="#4-二叉排序树（二叉查找树）" class="headerlink" title="4.二叉排序树（二叉查找树）"></a>4.二叉排序树（二叉查找树）</h2><p><strong>定义：</strong>如果二叉树的任一结点大于其非空左子树的所有结点，而小于其非空右子树的所有结点，则这棵二叉树称为二叉排序树。<br><strong>性质：</strong>对一棵二叉排序树进行中序遍历，所得的结点序列一定是递增有序的。<br><strong>时间复杂度为O(log2n)，但在最坏情况下（单枝树）为O(n)</strong><br>C语言实现：<br>实现了二叉排序树的创建、查找及中序遍历<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;malloc.h&gt;</div><div class="line"></div><div class="line">#define N 8</div><div class="line"></div><div class="line">typedef struct BiTreeNode&#123;</div><div class="line">    int data;</div><div class="line">    struct BiTreeNode *lchild;</div><div class="line">    struct BiTreeNode *rchild;</div><div class="line">&#125;BiTreeNode;</div><div class="line"></div><div class="line">//插入一个结点到二叉排序树</div><div class="line">void InsertNode(BiTreeNode **root,int data)</div><div class="line">&#123;</div><div class="line">    BiTreeNode *temp,*p,*q;</div><div class="line">    //创建新结点</div><div class="line">    temp=(BiTreeNode *)malloc(sizeof(BiTreeNode));</div><div class="line">    temp-&gt;data=data;</div><div class="line">    temp-&gt;lchild=NULL;</div><div class="line">    temp-&gt;rchild=NULL;</div><div class="line"></div><div class="line">    if(*root==NULL) //根结点为空</div><div class="line">        *root=temp;</div><div class="line">    else</div><div class="line">    &#123;</div><div class="line">        p=*root;</div><div class="line">        while(p!=NULL) //找到插入点</div><div class="line">        &#123;</div><div class="line">            q=p;</div><div class="line">            if(data &lt; p-&gt;data)</div><div class="line">                p=p-&gt;lchild;</div><div class="line">            else</div><div class="line">                p=p-&gt;rchild;</div><div class="line">        &#125;</div><div class="line">        if(data &lt; q-&gt;data)</div><div class="line">            q-&gt;lchild=temp;</div><div class="line">        else</div><div class="line">            q-&gt;rchild=temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//中序遍历二叉排序树</div><div class="line">void MidOrderTraverse(BiTreeNode *t)</div><div class="line">&#123;</div><div class="line">    if(t!=NULL)</div><div class="line">    &#123;</div><div class="line">        MidOrderTraverse(t-&gt;lchild);</div><div class="line">        printf(&quot;%d &quot;,t-&gt;data);</div><div class="line">        MidOrderTraverse(t-&gt;rchild);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//二叉排序树查找算法</div><div class="line">BiTreeNode * BiTreeSearch(BiTreeNode *root,int key)</div><div class="line">&#123;</div><div class="line">    BiTreeNode *p=root;</div><div class="line">    while(p!=NULL)</div><div class="line">    &#123;</div><div class="line">        if(key &gt; p-&gt;data)</div><div class="line">            p=p-&gt;rchild;</div><div class="line">        else if(key &lt; p-&gt;data)</div><div class="line">            p=p-&gt;lchild;</div><div class="line">        else</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    return p;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int a[N]=&#123;10,5,15,22,11,3,7,25&#125;;</div><div class="line">    BiTreeNode *root=NULL;</div><div class="line">    int i;</div><div class="line">    //为数组a构造二叉排序树</div><div class="line">    for(i=0;i&lt;N;i++)</div><div class="line">        InsertNode(&amp;root,a[i]);</div><div class="line"></div><div class="line">    //中序遍历</div><div class="line">    MidOrderTraverse(root);</div><div class="line"></div><div class="line">    //查找二叉排序树</div><div class="line">    int key;</div><div class="line">    scanf(&quot;%d&quot;,&amp;key);</div><div class="line">    BiTreeNode *t;</div><div class="line">    t=BiTreeSearch(root,key);</div><div class="line">    if(t)</div><div class="line">        printf(&quot;found:%d\n&quot;,t-&gt;data);</div><div class="line">    else</div><div class="line">        printf(&quot;notfound\n&quot;);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"># C语言</a>
+          
+            <a href="/tags/查找/" rel="tag"># 查找</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/19/CCF201703/" rel="next" title="CCF_201703">
+                <i class="fa fa-chevron-left"></i> CCF_201703
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/21/常用排序算法实现/" rel="prev" title="常用排序算法实现">
+                常用排序算法实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Vivianhy" />
+          <p class="site-author-name" itemprop="name">Vivianhy</p>
+           
+              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/vivianhy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=s8XaxdrS3dvK88LCndDc3g" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找定义及分类"><span class="nav-number">1.</span> <span class="nav-text">查找定义及分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找表的类型及其查找方法"><span class="nav-number">2.</span> <span class="nav-text">查找表的类型及其查找方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-顺序查找"><span class="nav-number">3.</span> <span class="nav-text">1.顺序查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-二分查找（折半查找）"><span class="nav-number">4.</span> <span class="nav-text">2.二分查找（折半查找）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-插值查找"><span class="nav-number">5.</span> <span class="nav-text">3.插值查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-二叉排序树（二叉查找树）"><span class="nav-number">6.</span> <span class="nav-text">4.二叉排序树（二叉查找树）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vivianhy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://vivianhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/08/20/常用查找算法实现/';
+          this.page.identifier = '2017/08/20/常用查找算法实现/';
+          this.page.title = '常用查找算法实现';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://vivianhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
