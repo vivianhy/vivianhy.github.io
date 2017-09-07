@@ -1,0 +1,838 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C语言,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vivian's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.相反数问题描述　　有 N 个非零且各不相同的整数。请你编一个程序求出它们中有多少对相反数(a 和 -a 为一对相反数)。
+输入格式　　第一行包含一个正整数 N。(1 ≤ N ≤ 500)。　　第二行为 N 个用单个空格隔开的非零整数,每个数的绝对值不超过1000,保证这些整数各不相同。
+输出格式　　只输出一个整数,即这 N 个数中包含多少对相反数。
+样例输入51 2 3 -1 -2
+样例输出2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCF_201403">
+<meta property="og:url" content="http://yoursite.com/2017/09/07/CCF201403/index.html">
+<meta property="og:site_name" content="Vivian's Blog">
+<meta property="og:description" content="1.相反数问题描述　　有 N 个非零且各不相同的整数。请你编一个程序求出它们中有多少对相反数(a 和 -a 为一对相反数)。
+输入格式　　第一行包含一个正整数 N。(1 ≤ N ≤ 500)。　　第二行为 N 个用单个空格隔开的非零整数,每个数的绝对值不超过1000,保证这些整数各不相同。
+输出格式　　只输出一个整数,即这 N 个数中包含多少对相反数。
+样例输入51 2 3 -1 -2
+样例输出2">
+<meta property="og:updated_time" content="2017-09-07T15:06:11.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CCF_201403">
+<meta name="twitter:description" content="1.相反数问题描述　　有 N 个非零且各不相同的整数。请你编一个程序求出它们中有多少对相反数(a 和 -a 为一对相反数)。
+输入格式　　第一行包含一个正整数 N。(1 ≤ N ≤ 500)。　　第二行为 N 个用单个空格隔开的非零整数,每个数的绝对值不超过1000,保证这些整数各不相同。
+输出格式　　只输出一个整数,即这 N 个数中包含多少对相反数。
+样例输入51 2 3 -1 -2
+样例输出2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/07/CCF201403/"/>
+
+
+
+
+
+  <title> CCF_201403 | Vivian's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vivian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/07/CCF201403/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vivianhy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vivian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CCF_201403
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-07T23:05:15+08:00">
+                2017-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CCF/" itemprop="url" rel="index">
+                    <span itemprop="name">CCF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/07/CCF201403/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/07/CCF201403/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-相反数"><a href="#1-相反数" class="headerlink" title="1.相反数"></a>1.相反数</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　有 N 个非零且各不相同的整数。请你编一个程序求出它们中有多少对相反数(a 和 -a 为一对相反数)。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　第一行包含一个正整数 N。(1 ≤ N ≤ 500)。<br>　　第二行为 N 个用单个空格隔开的非零整数,每个数的绝对值不超过1000,保证这些整数各不相同。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　只输出一个整数,即这 N 个数中包含多少对相反数。</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>5<br>1 2 3 -1 -2</p>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>2</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>使用数组b存放每个整数的个数，对应下标为整数的绝对值，最后值为2的数组元素个数即为相反数的对数。<br><a id="more"></a></p>
+<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;math.h&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int a[500];</div><div class="line">	int b[1001]=&#123;0&#125;;</div><div class="line">	int n,i;</div><div class="line">	int count,t;</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">		scanf(&quot;%d&quot;,&amp;a[i]);</div><div class="line"></div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">	&#123;</div><div class="line">		t=abs(a[i]);</div><div class="line">		b[t]++;</div><div class="line">	&#125;</div><div class="line">	count=0;</div><div class="line">	for(i=0;i&lt;1001;i++)</div><div class="line">		if(b[i]==2)</div><div class="line">			count++;</div><div class="line">	printf(&quot;%d\n&quot;,count);</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-窗口"><a href="#2-窗口" class="headerlink" title="2.窗口"></a>2.窗口</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　在某图形操作系统中,有 N 个窗口,每个窗口都是一个两边与坐标轴分别平行的矩形区域。窗口的边界上的点也属于该窗口。窗口之间有层次的区别,在多于一个窗口重叠的区域里,只会显示位于顶层的窗口里的内容。<br>　　当你点击屏幕上一个点的时候,你就选择了处于被点击位置的最顶层窗口,并且这个窗口就会被移到所有窗口的最顶层,而剩余的窗口的层次顺序不变。如果你点击的位置不属于任何窗口,则系统会忽略你这次点击。<br>　　现在我们希望你写一个程序模拟点击窗口的过程。</p>
+<h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行有两个正整数,即 N 和 M。(1 ≤ N ≤ 10,1 ≤ M ≤ 10)<br>　　接下来 N 行按照从最下层到最顶层的顺序给出 N 个窗口的位置。 每行包含四个非负整数 x<sub style="margin: 0px; padding: 0px;">1</sub>, y<sub style="margin: 0px; padding: 0px;">1</sub>, x<sub style="margin: 0px; padding: 0px;">2</sub>, y<sub style="margin: 0px; padding: 0px;">2</sub>,表示该窗口的一对顶点坐标分别为 (x<sub style="margin: 0px; padding: 0px;">1</sub>, y<sub style="margin: 0px; padding: 0px;">1</sub>) 和 (x<sub style="margin: 0px; padding: 0px;">2</sub>, y<sub style="margin: 0px; padding: 0px;">2</sub>)。保证 x<sub style="margin: 0px; padding: 0px;">1</sub> &lt; x<sub style="margin: 0px; padding: 0px;">2</sub>,y<sub style="margin: 0px; padding: 0px;">1</sub> 2。<br>　　接下来 M 行每行包含两个非负整数 x, y,表示一次鼠标点击的坐标。<br>　　题目中涉及到的所有点和矩形的顶点的 x, y 坐标分别不超过2559和1439。</p>
+<h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出包括 M 行,每一行表示一次鼠标点击的结果。如果该次鼠标点击选择了一个窗口,则输出这个窗口的编号(窗口按照输入中的顺序从 1 编号到 N);如果没有,则输出”IGNORED”(不含双引号)。</p>
+<h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h3><p>3 4<br>0 0 4 4<br>1 1 5 5<br>2 2 6 6<br>1 1<br>0 0<br>4 4<br>0 5</p>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h3><p>2<br>1<br>1<br>IGNORED</p>
+<h3 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h3><p>　　第一次点击的位置同时属于第 1 和第 2 个窗口,但是由于第 2 个窗口在上面,它被选择并且被置于顶层。<br>　　第二次点击的位置只属于第 1 个窗口,因此该次点击选择了此窗口并将其置于顶层。现在的三个窗口的层次关系与初始状态恰好相反了。<br>　　第三次点击的位置同时属于三个窗口的范围,但是由于现在第 1 个窗口处于顶层,它被选择。<br>　　最后点击的 (0, 5) 不属于任何窗口。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>用结构体数组存放窗口，数组从低地址到高地址即为窗口从最底层到最顶层。<br>点击选择窗口时，从数组最后一个元素（顶层窗口）开始遍历，若找到要点击的窗口，则移动数组元素将该窗口移到顶层。</p>
+<h3 id="源代码-1"><a href="#源代码-1" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line"></div><div class="line">struct window&#123;</div><div class="line">	int x1,y1;</div><div class="line">	int x2,y2;</div><div class="line">	int num; //记录窗口编号</div><div class="line">	//int level;</div><div class="line">&#125;a[10],t;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int n,m;</div><div class="line">	int x,y;</div><div class="line">	int i,j;</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	scanf(&quot;%d&quot;,&amp;m);</div><div class="line">	for(i=0;i&lt;n;i++)</div><div class="line">	&#123;</div><div class="line">		scanf(&quot;%d%d%d%d&quot;,&amp;a[i].x1,&amp;a[i].y1,&amp;a[i].x2,&amp;a[i].y2);</div><div class="line">		a[i].num=i+1;</div><div class="line">		//a[i].level=i+1;</div><div class="line">	&#125;</div><div class="line">	while(m--)</div><div class="line">	&#123;</div><div class="line">		scanf(&quot;%d%d&quot;,&amp;x,&amp;y);</div><div class="line">		for(i=n-1;i&gt;=0;i--) //找到被点击位置的最顶层窗口</div><div class="line">		&#123;</div><div class="line">			if(x&gt;=a[i].x1 &amp;&amp; x&lt;=a[i].x2 &amp;&amp; y&gt;=a[i].y1 &amp;&amp; y&lt;=a[i].y2)</div><div class="line">				break;</div><div class="line">		&#125;</div><div class="line">		if(i&lt;0)</div><div class="line">			printf(&quot;IGNORED\n&quot;);</div><div class="line">		else</div><div class="line">		&#123;</div><div class="line">			printf(&quot;%d\n&quot;,a[i].num);</div><div class="line">			t=a[i];</div><div class="line">			for(j=i+1;j&lt;n;j++) //被选中的窗口移到顶层</div><div class="line">				a[j-1]=a[j];</div><div class="line">			a[n-1]=t;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-命令行选项"><a href="#3-命令行选项" class="headerlink" title="3.命令行选项"></a>3.命令行选项</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>　　请你写一个命令行分析程序,用以分析给定的命令行里包含哪些选项。每个命令行由若干个字符串组成,它们之间恰好由一个空格分隔。这些字符串中的第一个为该命令行工具的名字,由小写字母组成,你的程序不用对它进行处理。在工具名字之后可能会包含若干选项,然后可能会包含一 些不是选项的参数。<br>　　选项有两类:带参数的选项和不带参数的选项。一个合法的无参数选项的形式是一个减号后面跟单个小写字母,如”-a” 或”-b”。而带参数选项则由两个由空格分隔的字符串构成,前者的格式要求与无参数选项相同,后者则是该选项的参数,是由小写字母,数字和减号组成的非空字符串。<br>　　该命令行工具的作者提供给你一个格式字符串以指定他的命令行工具需要接受哪些选项。这个字符串由若干小写字母和冒号组成,其中的每个小写字母表示一个该程序接受的选项。如果该小写字母后面紧跟了一个冒号,它就表示一个带参数的选项,否则则为不带参数的选项。例如, “ab:m:” 表示该程序接受三种选项,即”-a”(不带参数),”-b”(带参数), 以及”-m”(带参数)。<br>　　命令行工具的作者准备了若干条命令行用以测试你的程序。对于每个命令行,你的工具应当一直向后分析。当你的工具遇到某个字符串既不是合法的选项,又不是某个合法选项的参数时,分析就停止。命令行剩余的未分析部分不构成该命令的选项,因此你的程序应当忽略它们。</p>
+<h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3><p>　　输入的第一行是一个格式字符串,它至少包含一个字符,且长度不超过 52。格式字符串只包含小写字母和冒号,保证每个小写字母至多出现一次,不会有两个相邻的冒号,也不会以冒号开头。<br>　　输入的第二行是一个正整数 N(1 ≤ N ≤ 20),表示你需要处理的命令行的个数。<br>　　接下来有 N 行,每行是一个待处理的命令行,它包括不超过 256 个字符。该命令行一定是若干个由单个空格分隔的字符串构成,每个字符串里只包含小写字母,数字和减号。</p>
+<h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3><p>　　输出有 N 行。其中第 i 行以”Case i:” 开始,然后应当有恰好一个空格,然后应当按照字母升序输出该命令行中用到的所有选项的名称,对于带参数的选项,在输出它的名称之后还要输出它的参数。如果一个选项在命令行中出现了多次,只输出一次。如果一个带参数的选项在命令行中出现了多次,只输出最后一次出现时所带的参数。</p>
+<h3 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h3><p>albw:x<br>4<br>ls -a -l -a documents -b<br>ls<br>ls -w 10 -x -w 15<br>ls -a -b -c -d -e -l</p>
+<h3 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h3><p>Case 1: -a -l<br>Case 2:<br>Case 3: -w 15 -x<br>Case 4: -a -b</p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>详见注释。<br>字符串操作题，需要细心。<br>有一个bug，得分90。</p>
+<h3 id="源代码-2"><a href="#源代码-2" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line"></div><div class="line">struct sou&#123;</div><div class="line">	char c;</div><div class="line">	int flag; //0：不带参数；1：带参数</div><div class="line">&#125;sou[55];</div><div class="line"></div><div class="line">struct res&#123; //存放结果集</div><div class="line">	char c;</div><div class="line">	int flag;</div><div class="line">	char s[260]; //对于带参数的选项，存放其参数</div><div class="line">&#125;res[55];</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	char a[55];</div><div class="line">	char str[260];</div><div class="line">	scanf(&quot;%s&quot;,a);</div><div class="line">	int i=0,j=0;</div><div class="line">	int len1,len2;//len1为sou实际长度，len2为res实际长度</div><div class="line">	while(a[i]) //解析格式字符串</div><div class="line">	&#123;</div><div class="line">		if(a[i]!=&apos;:&apos; &amp;&amp; a[i+1]==&apos;:&apos;)</div><div class="line">		&#123;</div><div class="line">			sou[j].c=a[i];</div><div class="line">			sou[j].flag=1;</div><div class="line">			i=i+2;</div><div class="line">			j++;</div><div class="line">		&#125;</div><div class="line">		else</div><div class="line">		&#123;</div><div class="line">			sou[j].c=a[i];</div><div class="line">			i++;</div><div class="line">			j++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	len1=j;</div><div class="line"></div><div class="line">	int n;</div><div class="line">	scanf(&quot;%d&quot;,&amp;n);</div><div class="line">	getchar();</div><div class="line">	int nk;</div><div class="line">	for(nk=1;nk&lt;=n;nk++)</div><div class="line">	&#123;</div><div class="line">		int k=0;</div><div class="line">		gets(str);</div><div class="line">		for(i=0;i&lt;55;i++)</div><div class="line">		&#123;</div><div class="line">			res[i].c=0;</div><div class="line">			res[i].flag=0;</div><div class="line">			res[i].s[0]=&apos;\0&apos;;</div><div class="line">		&#125;</div><div class="line">		//处理命令行</div><div class="line">		i=0;</div><div class="line">		while(str[i]!=&apos; &apos; &amp;&amp; str[i]!=&apos;\0&apos;) //跳过命令行工具的名字</div><div class="line">			i++;</div><div class="line">		if(str[i]==&apos;\0&apos;)</div><div class="line">		&#123;</div><div class="line">			printf(&quot;Case %d: \n&quot;,nk);</div><div class="line">			continue;</div><div class="line">		&#125;</div><div class="line">		i++;</div><div class="line">		while(str[i])</div><div class="line">		&#123;</div><div class="line">			if(str[i]==&apos; &apos;)</div><div class="line">				i++;</div><div class="line">			else if(str[i]==&apos;-&apos;) </div><div class="line">			&#123;</div><div class="line">				if(str[i+1]&gt;=&apos;a&apos; &amp;&amp; str[i+1]&lt;=&apos;z&apos; &amp;&amp; (str[i+2]==&apos; &apos;|| str[i+2]==&apos;\0&apos;)) //为合法的选项形式</div><div class="line">				&#123;</div><div class="line">					char temp=str[i+1];</div><div class="line">					for(j=0;j&lt;len1;j++) </div><div class="line">						if(sou[j].c==temp)</div><div class="line">							break;</div><div class="line">					if(j==len1) </div><div class="line">						break;</div><div class="line">					else  //为合法选项</div><div class="line">					&#123;</div><div class="line">						if(sou[j].flag==0) //不带参数</div><div class="line">						&#123;</div><div class="line">							int t=0;</div><div class="line">							for(t=0;t&lt;k;t++) //多次出现只记录一次</div><div class="line">								if(res[t].c==temp)</div><div class="line">									break;</div><div class="line">							if(t==k)</div><div class="line">							&#123;</div><div class="line">								res[k].c=temp;</div><div class="line">								res[k].flag=0;</div><div class="line">								k++;</div><div class="line">							&#125;</div><div class="line">							i=i+2;</div><div class="line">						&#125;</div><div class="line">						else  //带参数</div><div class="line">						&#123;</div><div class="line">							i=i+3;</div><div class="line">							int p=0;</div><div class="line">							//s1存放参数</div><div class="line">							char s1[256];</div><div class="line">							while(str[i]!=&apos; &apos; &amp;&amp; str[i]!=&apos;\0&apos;)</div><div class="line">							&#123;</div><div class="line">								s1[p]=str[i];</div><div class="line">								p++;</div><div class="line">								i++;</div><div class="line">							&#125;</div><div class="line">							s1[p]=&apos;\0&apos;;</div><div class="line">							int t=0;</div><div class="line">							for(t=0;t&lt;k;t++)</div><div class="line">								if(res[t].c==temp)</div><div class="line">									break;</div><div class="line">							if(t==k)</div><div class="line">							&#123;</div><div class="line">								res[k].c=temp;</div><div class="line">								res[k].flag=1;</div><div class="line">								strcpy(res[k].s,s1);</div><div class="line">								k++;</div><div class="line">							&#125;</div><div class="line">							else //多次出现取最后一次的参数</div><div class="line">								strcpy(res[t].s,s1);</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				else</div><div class="line">					break;</div><div class="line">			&#125;</div><div class="line">			else</div><div class="line">				break;</div><div class="line">		&#125;</div><div class="line">		len2=k;</div><div class="line">		for(i=1;i&lt;len2;i++) //结果集按字母升序排序</div><div class="line">		&#123;</div><div class="line">			for(j=0;j&lt;len2-i;j++)</div><div class="line">			&#123;</div><div class="line">				if(res[j].c&gt;res[j+1].c)</div><div class="line">				&#123;</div><div class="line">					char t1;</div><div class="line">					t1=res[j].c;</div><div class="line">					res[j].c=res[j+1].c;</div><div class="line">					res[j+1].c=t1;</div><div class="line"></div><div class="line">					int t2;</div><div class="line">					t2=res[j].flag;</div><div class="line">					res[j].flag=res[j+1].flag;</div><div class="line">					res[j+1].flag=t2;</div><div class="line"></div><div class="line">					char sp[260];</div><div class="line">					strcpy(sp,res[j].s);</div><div class="line">					strcpy(res[j].s,res[j+1].s);</div><div class="line">					strcpy(res[j+1].s,sp);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		//输出</div><div class="line">		printf(&quot;Case %d: &quot;,nk);</div><div class="line">		for(i=0;i&lt;len2;i++)</div><div class="line">		&#123;</div><div class="line">			if(res[i].flag==0)</div><div class="line">				printf(&quot;-%c &quot;,res[i].c);</div><div class="line">			else</div><div class="line">				printf(&quot;-%c %s &quot;,res[i].c,res[i].s);</div><div class="line">		&#125;</div><div class="line">		printf(&quot;\n&quot;);</div><div class="line">	&#125;</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"># C语言</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/06/华为笔试 报数游戏/" rel="next" title="华为笔试 报数游戏">
+                <i class="fa fa-chevron-left"></i> 华为笔试 报数游戏
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Vivianhy" />
+          <p class="site-author-name" itemprop="name">Vivianhy</p>
+           
+              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/vivianhy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=s8XaxdrS3dvK88LCndDc3g" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-相反数"><span class="nav-number">1.</span> <span class="nav-text">1.相反数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.6.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.7.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-窗口"><span class="nav-number">2.</span> <span class="nav-text">2.窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-1"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-1"><span class="nav-number">2.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-1"><span class="nav-number">2.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例说明"><span class="nav-number">2.6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">2.7.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-1"><span class="nav-number">2.8.</span> <span class="nav-text">源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-命令行选项"><span class="nav-number">3.</span> <span class="nav-text">3.命令行选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-2"><span class="nav-number">3.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-2"><span class="nav-number">3.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-2"><span class="nav-number">3.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-2"><span class="nav-number">3.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-2"><span class="nav-number">3.6.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码-2"><span class="nav-number">3.7.</span> <span class="nav-text">源代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vivianhy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://vivianhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/09/07/CCF201403/';
+          this.page.identifier = '2017/09/07/CCF201403/';
+          this.page.title = 'CCF_201403';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://vivianhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
