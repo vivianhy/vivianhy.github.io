@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="矩阵," />
+  <meta name="keywords" content="BFS,c++,����," />
 
 
 
@@ -107,25 +107,16 @@
 
 
 
-<meta name="description" content="调整方阵题目描述输入一个N（N&amp;lt;=10）阶方阵，按照如下方式调整方阵：1.将第一列中最大数所在的行与第一行对调。2.将第二列中从第二行到第N行最大数所在的行与第二行对调。依此类推…N-1.将第N-1列中从第N-1行到第N行最大数所在的行与第N-1行对调。N.输出这个方阵
-输入包含多组测试数据,每组测试数据第一行为一个整数N,表示方阵的阶数.接下来输入这个N阶方阵.
-输出调整后的方阵
-样例输入">
+<meta name="description" content="������������һ����ά���飺int maze[5][5]={0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,0,};��ʾһ���Թ������еġ�1����ʾ�赲����0����ʾ��ͨ��������������ֻ�ܺ����߻������ߣ�����б���ߡ�Ҫ�����ҳ������Ͻǵ����½ǵ�����·����">
 <meta property="og:type" content="article">
-<meta property="og:title" content="九度oj 1470——调整方阵">
-<meta property="og:url" content="http://yoursite.com/2017/09/03/九度oj 1470——调整方阵/index.html">
+<meta property="og:title" content="�Թ�����">
+<meta property="og:url" content="http://yoursite.com/2018/10/07/迷宫问题/index.html">
 <meta property="og:site_name" content="Vivian's Blog">
-<meta property="og:description" content="调整方阵题目描述输入一个N（N&amp;lt;=10）阶方阵，按照如下方式调整方阵：1.将第一列中最大数所在的行与第一行对调。2.将第二列中从第二行到第N行最大数所在的行与第二行对调。依此类推…N-1.将第N-1列中从第N-1行到第N行最大数所在的行与第N-1行对调。N.输出这个方阵
-输入包含多组测试数据,每组测试数据第一行为一个整数N,表示方阵的阶数.接下来输入这个N阶方阵.
-输出调整后的方阵
-样例输入">
-<meta property="og:updated_time" content="2018-10-07T06:50:33.842Z">
+<meta property="og:description" content="������������һ����ά���飺int maze[5][5]={0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,0,};��ʾһ���Թ������еġ�1����ʾ�赲����0����ʾ��ͨ��������������ֻ�ܺ����߻������ߣ�����б���ߡ�Ҫ�����ҳ������Ͻǵ����½ǵ�����·����">
+<meta property="og:updated_time" content="2018-10-07T07:12:44.626Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="九度oj 1470——调整方阵">
-<meta name="twitter:description" content="调整方阵题目描述输入一个N（N&amp;lt;=10）阶方阵，按照如下方式调整方阵：1.将第一列中最大数所在的行与第一行对调。2.将第二列中从第二行到第N行最大数所在的行与第二行对调。依此类推…N-1.将第N-1列中从第N-1行到第N行最大数所在的行与第N-1行对调。N.输出这个方阵
-输入包含多组测试数据,每组测试数据第一行为一个整数N,表示方阵的阶数.接下来输入这个N阶方阵.
-输出调整后的方阵
-样例输入">
+<meta name="twitter:title" content="�Թ�����">
+<meta name="twitter:description" content="������������һ����ά���飺int maze[5][5]={0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,0,};��ʾһ���Թ������еġ�1����ʾ�赲����0����ʾ��ͨ��������������ֻ�ܺ����߻������ߣ�����б���ߡ�Ҫ�����ҳ������Ͻǵ����½ǵ�����·����">
 
 
 
@@ -153,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/03/九度oj 1470——调整方阵/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/07/迷宫问题/"/>
 
 
 
 
 
-  <title> 九度oj 1470——调整方阵 | Vivian's Blog </title>
+  <title> �Թ����� | Vivian's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -298,7 +289,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/03/九度oj 1470——调整方阵/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/07/迷宫问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vivianhy">
@@ -319,7 +310,7 @@
             
             
               
-                九度oj 1470——调整方阵
+                �Թ�����
               
             
           </h1>
@@ -334,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-03T20:55:36+08:00">
-                2017-09-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-07T15:05:54+08:00">
+                2018-10-07
               </time>
             
 
@@ -357,8 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
+                  <a href="/categories/�㷨/" itemprop="url" rel="index">
+                    <span itemprop="name">�㷨</span>
                   </a>
                 </span>
 
@@ -375,9 +366,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/03/九度oj 1470——调整方阵/#comments" itemprop="discussionUrl">
+                <a href="/2018/10/07/迷宫问题/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/03/九度oj 1470——调整方阵/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/10/07/迷宫问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -403,13 +394,9 @@
       
 
       
-        <h2 id="调整方阵"><a href="#调整方阵" class="headerlink" title="调整方阵"></a>调整方阵</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入一个N（N&lt;=10）阶方阵，按照如下方式调整方阵：<br>1.将第一列中最大数所在的行与第一行对调。<br>2.将第二列中从第二行到第N行最大数所在的行与第二行对调。<br>依此类推…<br>N-1.将第N-1列中从第N-1行到第N行最大数所在的行与第N-1行对调。<br>N.输出这个方阵</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>包含多组测试数据,每组测试数据第一行为一个整数N,表示方阵的阶数.<br>接下来输入这个N阶方阵.</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>调整后的方阵</p>
-<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>4<br>3 6 8 7<br>6 7 5 3<br>8 6 5 3<br>9 8 7 2</p>
-<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>9 8 7 2<br>6 7 5 3<br>3 6 8 7<br>8 6 5 3</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>变量j控制列的遍历，首先找到第j列中从第j行到第n行最大数所在的行i，然后再将第i行和第j行的数对调。<br><a id="more"></a></p>
-<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line"></div><div class="line">int a[10][10];</div><div class="line"></div><div class="line">//找到第j列中从第k行到第n行最大数所在的行</div><div class="line">int MaxLine(int j,int k,int n)</div><div class="line">&#123;</div><div class="line">    int i;</div><div class="line">    int max=0;</div><div class="line">    int maxi;</div><div class="line">    for(i=k;i&lt;n;i++)</div><div class="line">    &#123;</div><div class="line">        if(a[i][j]&gt;max)</div><div class="line">        &#123;</div><div class="line">            max=a[i][j];</div><div class="line">            maxi=i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return maxi;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//将第i行与第j行对调</div><div class="line">void swap(int i,int j,int n)</div><div class="line">&#123;</div><div class="line">    int k,t;</div><div class="line">    for(k=0;k&lt;n;k++)</div><div class="line">    &#123;</div><div class="line">        t=a[i][k];</div><div class="line">        a[i][k]=a[j][k];</div><div class="line">        a[j][k]=t;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int n;</div><div class="line">    while(scanf(&quot;%d&quot;,&amp;n)!=EOF)</div><div class="line">    &#123;</div><div class="line">        int i,j,k;</div><div class="line">        for(i=0;i&lt;n;i++)</div><div class="line">            for(j=0;j&lt;n;j++)</div><div class="line">                scanf(&quot;%d&quot;,&amp;a[i][j]);</div><div class="line">        for(j=0;j&lt;n-1;j++)</div><div class="line">        &#123;</div><div class="line">            k=j;</div><div class="line">            i=MaxLine(j,k,n); </div><div class="line">            if(i!=j)</div><div class="line">                swap(i,j,n);</div><div class="line">        &#125;</div><div class="line">        for(i=0;i&lt;n;i++)</div><div class="line">        &#123;</div><div class="line">            for(j=0;j&lt;n-1;j++)</div><div class="line">                printf(&quot;%d &quot;,a[i][j]);</div><div class="line">            printf(&quot;%d\n&quot;,a[i][n-1]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h2 id="��������"><a href="#��������" class="headerlink" title="��������"></a>��������</h2><p>����һ����ά���飺<br>int maze[5][5]={<br>0,1,0,0,0,<br>0,1,0,1,0,<br>0,0,0,0,0,<br>0,1,1,1,0,<br>0,0,0,1,0,<br>};<br>��ʾһ���Թ������еġ�1����ʾ�赲����0����ʾ��ͨ����<br>����������ֻ�ܺ����߻������ߣ�����б���ߡ�<br>Ҫ�����ҳ������Ͻǵ����½ǵ�����·����</p>
+<h2 id="�㷨����"><a href="#�㷨����" class="headerlink" title="�㷨����"></a>�㷨����</h2><p>1.�ӳ�ʼ�ڵ�start��ʼ����start����OPEN���У�����start�������У���<br>2.��������Ϊ�գ��������޽⣬ʧ���˳���<br>3.ȡ�������еĶ��׽ڵ㣬���ýڵ�����Ϊ�ѷ��ʣ���visited[x][y]=1;<br>4.�����ýڵ��Ƿ�ΪĿ���ڵ㣬���ǣ����õ������Ľ⣬���ݽڵ��д洢�ĵ����ýڵ���·����Ϣ��������·����<br>5.���ڵ㲻����չ����ת��2����<br>6.��չ�ýڵ㣬�������Ըýڵ�Ϊ��ʼ�����ĸ����ڽڵ㣬������Ҫ�ж����ڽڵ��Ƿ����Է���(��maze[x][y]==0��1)���Ƿ��Ѿ������ʹ�(��visited[x][y]==0��1)���Լ��Ƿ񳬳��Թ��߽硣��ͨ���������Ա���չ�����ڽڵ�����Ϣ(������x,������y,·������step,�����ýڵ���·��route)���������У�Ȼ��ת��2����<br><a id="more"></a></p>
+<h2 id="����ʵ��"><a href="#����ʵ��" class="headerlink" title="����ʵ��"></a>����ʵ��</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;string.h&gt;</div><div class="line">#include &lt;queue&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">int maze[5][5]=&#123;&#123;0,1,0,0,0&#125;,&#123;0,1,0,1,0&#125;,&#123;0,0,0,0,0&#125;,&#123;0,1,1,1,0&#125;,&#123;0,0,0,1,0&#125;&#125;; //�Թ�</div><div class="line">bool visited[5][5];</div><div class="line">int dx[4] = &#123;0,1,0,-1&#125;;</div><div class="line">int dy[4] = &#123;1,0,-1,0&#125;;</div><div class="line"></div><div class="line">struct Node&#123;</div><div class="line">    int x;</div><div class="line">    int y;</div><div class="line">    int step;</div><div class="line">    short route[30];</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//�ж��Ƿ�������չ�ڵ�</div><div class="line">bool judge(int x,int y)</div><div class="line">&#123;</div><div class="line">    if(x&lt;0 || x&gt;=5 || y&lt;0 || y&gt;=5)</div><div class="line">        return true;</div><div class="line">    if(visited[x][y])</div><div class="line">        return true;</div><div class="line">    if(maze[x][y]==1)</div><div class="line">        return true;</div><div class="line">    return false;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Node bfs()</div><div class="line">&#123;</div><div class="line">    queue &lt;Node&gt; q;</div><div class="line">    Node cur,next;</div><div class="line">    cur.x = 0;</div><div class="line">    cur.y = 0;</div><div class="line">    cur.step = 0;</div><div class="line">    q.push(cur);</div><div class="line">    while(!q.empty())&#123;</div><div class="line">        cur = q.front();</div><div class="line">        q.pop();		</div><div class="line">		visited[cur.x][cur.y] = true;//����ǰ�ڵ�����Ϊ�ѷ���</div><div class="line">        if(cur.x==4 &amp;&amp; cur.y==4)</div><div class="line">            return cur;</div><div class="line">        int i,nx,ny;</div><div class="line">		//�����ĸ������ڵ�</div><div class="line">        for(i=0;i&lt;4;i++)&#123;</div><div class="line">            nx = cur.x + dx[i];</div><div class="line">            ny = cur.y + dy[i];</div><div class="line">            if(judge(nx,ny))</div><div class="line">                continue;</div><div class="line">            //������չ�ڵ�</div><div class="line">            next = cur;</div><div class="line">            next.x = nx;</div><div class="line">            next.y = ny;</div><div class="line">            next.step = cur.step + 1; //����</div><div class="line">            next.route[cur.step] = i; //·��</div><div class="line">            q.push(next);		</div><div class="line">        &#125; </div><div class="line">    &#125;</div><div class="line">    return cur;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    memset(visited,0,sizeof(visited));</div><div class="line">    Node cur = bfs();</div><div class="line">    int x,y;</div><div class="line">    x = 0,y = 0;</div><div class="line">    for(int i=0;i&lt;=cur.step;i++)&#123;</div><div class="line">         printf(&quot;(%d, %d)\n&quot;,x,y);</div><div class="line">         x+=dx[cur.route[i]];</div><div class="line">         y+=dy[cur.route[i]];</div><div class="line">    &#125;        </div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -438,7 +425,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/矩阵/" rel="tag"># 矩阵</a>
+            <a href="/tags/BFS/" rel="tag"># BFS</a>
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+            <a href="/tags/����/" rel="tag"># ����</a>
           
         </div>
       
@@ -451,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/02/九度oj 1073——杨辉三角形/" rel="next" title="九度oj 1073——杨辉三角形">
-                <i class="fa fa-chevron-left"></i> 九度oj 1073——杨辉三角形
+              <a href="/2017/09/07/CCF201403/" rel="next" title="CCF_201403">
+                <i class="fa fa-chevron-left"></i> CCF_201403
               </a>
             
           </div>
@@ -460,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/03/单链表实现求两个多项式的和/" rel="prev" title="单链表实现求两个多项式的和">
-                单链表实现求两个多项式的和 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -626,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#调整方阵"><span class="nav-number">1.</span> <span class="nav-text">调整方阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入"><span class="nav-number">1.2.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出"><span class="nav-number">1.3.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.6.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.7.</span> <span class="nav-text">源代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#��������"><span class="nav-number">1.</span> <span class="nav-text">��������</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#�㷨����"><span class="nav-number">2.</span> <span class="nav-text">�㷨����</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����ʵ��"><span class="nav-number">3.</span> <span class="nav-text">����ʵ��</span></a></li></ol></div>
             
 
           </div>
@@ -763,9 +750,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/09/03/九度oj 1470——调整方阵/';
-          this.page.identifier = '2017/09/03/九度oj 1470——调整方阵/';
-          this.page.title = '九度oj 1470——调整方阵';
+          this.page.url = 'http://yoursite.com/2018/10/07/迷宫问题/';
+          this.page.identifier = '2018/10/07/迷宫问题/';
+          this.page.title = '�Թ�����';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://vivianhy.disqus.com/embed.js';
