@@ -313,7 +313,7 @@
               
                 
                 <a class="post-title-link" href="/2018/10/07/迷宫问题/" itemprop="url">
-                  �Թ�����
+                  迷宫问题
                 </a>
               
             
@@ -352,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/�㷨/" itemprop="url" rel="index">
-                    <span itemprop="name">�㷨</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -399,8 +399,8 @@
 
       
         
-          <h2 id="��������"><a href="#��������" class="headerlink" title="��������"></a>��������</h2><p>����һ����ά���飺<br>int maze[5][5]={<br>0,1,0,0,0,<br>0,1,0,1,0,<br>0,0,0,0,0,<br>0,1,1,1,0,<br>0,0,0,1,0,<br>};<br>��ʾһ���Թ������еġ�1����ʾ�赲����0����ʾ��ͨ����<br>����������ֻ�ܺ����߻������ߣ�����б���ߡ�<br>Ҫ�����ҳ������Ͻǵ����½ǵ�����·����</p>
-<h2 id="�㷨����"><a href="#�㷨����" class="headerlink" title="�㷨����"></a>�㷨����</h2><p>1.�ӳ�ʼ�ڵ�start��ʼ����start����OPEN���У�����start�������У���<br>2.��������Ϊ�գ��������޽⣬ʧ���˳���<br>3.ȡ�������еĶ��׽ڵ㣬���ýڵ�����Ϊ�ѷ��ʣ���visited[x][y]=1;<br>4.�����ýڵ��Ƿ�ΪĿ���ڵ㣬���ǣ����õ������Ľ⣬���ݽڵ��д洢�ĵ����ýڵ���·����Ϣ��������·����<br>5.���ڵ㲻����չ����ת��2����<br>6.��չ�ýڵ㣬�������Ըýڵ�Ϊ��ʼ�����ĸ����ڽڵ㣬������Ҫ�ж����ڽڵ��Ƿ����Է���(��maze[x][y]==0��1)���Ƿ��Ѿ������ʹ�(��visited[x][y]==0��1)���Լ��Ƿ񳬳��Թ��߽硣��ͨ���������Ա���չ�����ڽڵ�����Ϣ(������x,������y,·������step,�����ýڵ���·��route)���������У�Ȼ��ת��2����<br>
+          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>定义一个二维数组：<br>int maze[5][5]={<br>0,1,0,0,0,<br>0,1,0,1,0,<br>0,0,0,0,0,<br>0,1,1,1,0,<br>0,0,0,1,0,<br>};<br>表示一个迷宫，其中的“1”表示阻挡，“0”表示可通过。<br>限制条件：只能横着走或竖着走，不能斜着走。<br>要求：找出从左上角到右下角的最短路径。</p>
+<h2 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h2><p>1.从初始节点start开始，将start放入OPEN表中（即将start加入队列）；<br>2.如果队列为空，则问题无解，失败退出；<br>3.取出队列中的队首节点，将该节点标记为已访问，即visited[x][y]=1;<br>4.考察该节点是否为目标节点，若是，则得到问题的解，根据节点中存储的到达该节点的路径信息输出最短路径；<br>5.若节点不可扩展，则转第2步；<br>6.扩展该节点，即访问以该节点为起始点的四个相邻节点，这里需要判断相邻节点是否可以访问(即maze[x][y]==0或1)，是否已经被访问过(即visited[x][y]==0或1)，以及是否超出迷宫边界。将通过检查可以被扩展的相邻节点的信息(横坐标x,纵坐标y,路径长度step,到达该节点的路径route)存入队列中，然后转第2步。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/07/迷宫问题/#more" rel="contents">
@@ -1951,7 +1951,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1962,7 +1962,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
