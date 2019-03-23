@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python,����," />
+  <meta name="keywords" content="python,爬虫," />
 
 
 
@@ -107,19 +107,22 @@
 
 
 
-<meta name="description" content="��ȡĿ����ȡè�۵�ӰTOP100���ĵ�Ӱ���������ơ�ͼƬ����Ա��ʱ�䡢������6����Ϣ����ȡ�Ľ�����json�ļ���ʽ���档
-��������1.ʹ��requests������ҳ����ץȡ��2.ʹ����������ʽ/BeautifulSoup/pyquery����ҳԴ�����н�������ȡ��Ҫ����Ϣ��3.����ȡ���">
+<meta name="description" content="爬取目标爬取猫眼电影TOP100榜的电影排名、名称、图片、演员、时间、评分这6个信息。爬取的结果以json文件形式保存。
+总体流程1.使用requests库进行页面的抓取。2.使用正则表达式/BeautifulSoup/pyquery对网页源码进行解析，提取需要的信息。3.将提取出的信息写入json文件保存
+导入相关库首先将要使用的请求库(requests)、解析库(re、BeautifulSou">
 <meta property="og:type" content="article">
-<meta property="og:title" content="��ȡè�۵�Ӱ����">
+<meta property="og:title" content="爬取猫眼电影排行">
 <meta property="og:url" content="http://yoursite.com/2019/03/23/爬取猫眼电影排行榜/index.html">
 <meta property="og:site_name" content="Vivian's Blog">
-<meta property="og:description" content="��ȡĿ����ȡè�۵�ӰTOP100���ĵ�Ӱ���������ơ�ͼƬ����Ա��ʱ�䡢������6����Ϣ����ȡ�Ľ�����json�ļ���ʽ���档
-��������1.ʹ��requests������ҳ����ץȡ��2.ʹ����������ʽ/BeautifulSoup/pyquery����ҳԴ�����н�������ȡ��Ҫ����Ϣ��3.����ȡ���">
-<meta property="og:updated_time" content="2019-03-23T08:50:09.721Z">
+<meta property="og:description" content="爬取目标爬取猫眼电影TOP100榜的电影排名、名称、图片、演员、时间、评分这6个信息。爬取的结果以json文件形式保存。
+总体流程1.使用requests库进行页面的抓取。2.使用正则表达式/BeautifulSoup/pyquery对网页源码进行解析，提取需要的信息。3.将提取出的信息写入json文件保存
+导入相关库首先将要使用的请求库(requests)、解析库(re、BeautifulSou">
+<meta property="og:updated_time" content="2019-03-23T09:05:10.507Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="��ȡè�۵�Ӱ����">
-<meta name="twitter:description" content="��ȡĿ����ȡè�۵�ӰTOP100���ĵ�Ӱ���������ơ�ͼƬ����Ա��ʱ�䡢������6����Ϣ����ȡ�Ľ�����json�ļ���ʽ���档
-��������1.ʹ��requests������ҳ����ץȡ��2.ʹ����������ʽ/BeautifulSoup/pyquery����ҳԴ�����н�������ȡ��Ҫ����Ϣ��3.����ȡ���">
+<meta name="twitter:title" content="爬取猫眼电影排行">
+<meta name="twitter:description" content="爬取目标爬取猫眼电影TOP100榜的电影排名、名称、图片、演员、时间、评分这6个信息。爬取的结果以json文件形式保存。
+总体流程1.使用requests库进行页面的抓取。2.使用正则表达式/BeautifulSoup/pyquery对网页源码进行解析，提取需要的信息。3.将提取出的信息写入json文件保存
+导入相关库首先将要使用的请求库(requests)、解析库(re、BeautifulSou">
 
 
 
@@ -153,7 +156,7 @@
 
 
 
-  <title> ��ȡè�۵�Ӱ���� | Vivian's Blog </title>
+  <title> 爬取猫眼电影排行 | Vivian's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -313,7 +316,7 @@
             
             
               
-                ��ȡè�۵�Ӱ����
+                爬取猫眼电影排行
               
             
           </h1>
@@ -351,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/��������/" itemprop="url" rel="index">
-                    <span itemprop="name">��������</span>
+                  <a href="/categories/网络爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">网络爬虫</span>
                   </a>
                 </span>
 
@@ -397,17 +400,17 @@
       
 
       
-        <h2 id="��ȡL��"><a href="#��ȡL��" class="headerlink" title="��ȡĿ��"></a>��ȡĿ��</h2><p>��ȡè�۵�ӰTOP100���ĵ�Ӱ���������ơ�ͼƬ����Ա��ʱ�䡢������6����Ϣ��<br>��ȡ�Ľ�����json�ļ���ʽ���档</p>
-<h2 id="��������"><a href="#��������" class="headerlink" title="��������"></a>��������</h2><p>1.ʹ��requests������ҳ����ץȡ��<br>2.ʹ����������ʽ/BeautifulSoup/pyquery����ҳԴ�����н�������ȡ��Ҫ����Ϣ��<br>3.����ȡ������Ϣд��json�ļ�����</p>
-<h2 id="�������ؿ�"><a href="#�������ؿ�" class="headerlink" title="�������ؿ�"></a>�������ؿ�</h2><p>���Ƚ�Ҫʹ�õ�������(requests)��������(re��BeautifulSoup��pyquery)�ȵ��룺<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import requests</div><div class="line">from requests.exceptions import RequestException</div><div class="line">import re</div><div class="line">from bs4 import BeautifulSoup</div><div class="line">from pyquery import PyQuery as pq</div><div class="line">import json</div><div class="line">import time</div></pre></td></tr></table></figure></p>
-<h2 id="��ҳץȡ"><a href="#��ҳץȡ" class="headerlink" title="��ҳץȡ"></a>��ҳץȡ</h2><p>����ҳץȡ���ֶ���Ϊһ�������������쳣������<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def get_one_page(url):</div><div class="line">    r = requests.get(url)</div><div class="line">    try:</div><div class="line">        if r.status_code == 200:</div><div class="line">            return r.text</div><div class="line">        return None</div><div class="line">    except RequestException:</div><div class="line">        return None</div></pre></td></tr></table></figure></p>
-<h2 id="��Ϣ��ȡ"><a href="#��Ϣ��ȡ" class="headerlink" title="��Ϣ��ȡ"></a>��Ϣ��ȡ</h2><p>�ֱ�ʹ�����ֽ�����ʵ������Ϣ��ȡ����ѡһ�ּ���</p>
-<h3 id="ʹ����������ʽ"><a href="#ʹ����������ʽ" class="headerlink" title="ʹ����������ʽ"></a>ʹ����������ʽ</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">def parse_one_page(html): #generator</div><div class="line">    pattern = re.compile(&apos;&lt;dd&gt;.*?board-index.*?&gt;(.*?)&lt;/i&gt;.*?data-src=&quot;(.*?)&quot;.*?name.*?a.*?&gt;(.*?)&lt;/a&gt;&apos;</div><div class="line">                            +&apos;.*?star&quot;&gt;(.*?)&lt;/p&gt;.*?releasetime&quot;&gt;(.*?)&lt;/p&gt;&apos;</div><div class="line">                            +&apos;.*?integer&quot;&gt;(.*?)&lt;/i&gt;.*?fraction&quot;&gt;(.*?)&lt;/i&gt;.*?&lt;/dd&gt;&apos;,re.S)</div><div class="line">    items = re.findall(pattern,html)</div><div class="line">    for item in items:</div><div class="line">        yield &#123;</div><div class="line">            &apos;index&apos;: item[0],</div><div class="line">            &apos;image&apos;: item[1],</div><div class="line">            &apos;title&apos;: item[2].strip(),</div><div class="line">            &apos;actor&apos;: item[3].strip()[3:],</div><div class="line">            &apos;time&apos;: item[4].strip()[5:],</div><div class="line">            &apos;score&apos;: item[5].strip() + item[6].strip()</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+        <h2 id="爬取目标"><a href="#爬取目标" class="headerlink" title="爬取目标"></a>爬取目标</h2><p>爬取猫眼电影TOP100榜的电影排名、名称、图片、演员、时间、评分这6个信息。<br>爬取的结果以json文件形式保存。</p>
+<h2 id="总体流程"><a href="#总体流程" class="headerlink" title="总体流程"></a>总体流程</h2><p>1.使用requests库进行页面的抓取。<br>2.使用正则表达式/BeautifulSoup/pyquery对网页源码进行解析，提取需要的信息。<br>3.将提取出的信息写入json文件保存</p>
+<h2 id="导入相关库"><a href="#导入相关库" class="headerlink" title="导入相关库"></a>导入相关库</h2><p>首先将要使用的请求库(requests)、解析库(re、BeautifulSoup、pyquery)等导入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import requests</div><div class="line">from requests.exceptions import RequestException</div><div class="line">import re</div><div class="line">from bs4 import BeautifulSoup</div><div class="line">from pyquery import PyQuery as pq</div><div class="line">import json</div><div class="line">import time</div></pre></td></tr></table></figure></p>
+<h2 id="网页抓取"><a href="#网页抓取" class="headerlink" title="网页抓取"></a>网页抓取</h2><p>将网页抓取部分独立为一个函数，包含异常处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def get_one_page(url):</div><div class="line">    r = requests.get(url)</div><div class="line">    try:</div><div class="line">        if r.status_code == 200:</div><div class="line">            return r.text</div><div class="line">        return None</div><div class="line">    except RequestException:</div><div class="line">        return None</div></pre></td></tr></table></figure></p>
+<h2 id="信息提取"><a href="#信息提取" class="headerlink" title="信息提取"></a>信息提取</h2><p>分别使用三种解析库实现了信息提取，任选一种即可</p>
+<h3 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">def parse_one_page(html): #generator</div><div class="line">    pattern = re.compile(&apos;&lt;dd&gt;.*?board-index.*?&gt;(.*?)&lt;/i&gt;.*?data-src=&quot;(.*?)&quot;.*?name.*?a.*?&gt;(.*?)&lt;/a&gt;&apos;</div><div class="line">                            +&apos;.*?star&quot;&gt;(.*?)&lt;/p&gt;.*?releasetime&quot;&gt;(.*?)&lt;/p&gt;&apos;</div><div class="line">                            +&apos;.*?integer&quot;&gt;(.*?)&lt;/i&gt;.*?fraction&quot;&gt;(.*?)&lt;/i&gt;.*?&lt;/dd&gt;&apos;,re.S)</div><div class="line">    items = re.findall(pattern,html)</div><div class="line">    for item in items:</div><div class="line">        yield &#123;</div><div class="line">            &apos;index&apos;: item[0],</div><div class="line">            &apos;image&apos;: item[1],</div><div class="line">            &apos;title&apos;: item[2].strip(),</div><div class="line">            &apos;actor&apos;: item[3].strip()[3:],</div><div class="line">            &apos;time&apos;: item[4].strip()[5:],</div><div class="line">            &apos;score&apos;: item[5].strip() + item[6].strip()</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="ʹ��BeautifulSoup"><a href="#ʹ��BeautifulSoup" class="headerlink" title="ʹ��BeautifulSoup"></a>ʹ��BeautifulSoup</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def parse_one_page(html): #generator</div><div class="line">    soup = BeautifulSoup(html,&apos;lxml&apos;)</div><div class="line">    for dd in soup.find_all(name=&apos;dd&apos;):</div><div class="line">        yield &#123;</div><div class="line">            &apos;index&apos;: dd.find(class_=&apos;board-index&apos;).string,</div><div class="line">            &apos;image&apos;: dd.find_all(name=&apos;img&apos;)[1][&apos;data-src&apos;],           </div><div class="line">            &apos;title&apos;: dd.find(class_=&apos;name&apos;).a.string.strip(),</div><div class="line">            &apos;actor&apos;: dd.find(class_=&apos;star&apos;).string.strip()[3:],</div><div class="line">            &apos;time&apos;: dd.find(class_=&apos;releasetime&apos;).string.strip()[5:],</div><div class="line">            &apos;score&apos;: dd.find(class_=&apos;integer&apos;).string.strip() + dd.find(class_=&apos;fraction&apos;).string.strip()</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<h3 id="ʹ��pyquery"><a href="#ʹ��pyquery" class="headerlink" title="ʹ��pyquery"></a>ʹ��pyquery</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def parse_one_page(html): #generator</div><div class="line">    doc = pq(html)</div><div class="line">    for dd in doc(&apos;dd&apos;).items():</div><div class="line">        yield &#123;</div><div class="line">            &apos;index&apos;: dd(&apos;.board-index&apos;).text(),</div><div class="line">            &apos;image&apos;: dd(&apos;img:last-child&apos;).attr(&apos;data-src&apos;),</div><div class="line">            &apos;title&apos;: dd(&apos;.name a&apos;).text().strip(),</div><div class="line">            &apos;actor&apos;: dd(&apos;.star&apos;).text().strip()[3:],</div><div class="line">            &apos;time&apos;: dd(&apos;.releasetime&apos;).text().strip()[5:],</div><div class="line">            &apos;score&apos;: dd(&apos;.integer&apos;).text().strip() + dd(&apos;.fraction&apos;).text().strip()</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<h2 id="д���l�"><a href="#д���l�" class="headerlink" title="д���ļ�"></a>д���ļ�</h2><p>����ȡ�����ֵ����͵���Ϣд��json�ļ����ұ���json�ĸ�ʽ:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def write_to_json(content):</div><div class="line">    with open(&apos;maoyanresult.json&apos;,&apos;a&apos;,encoding=&apos;utf-8&apos;) as file:</div><div class="line">        file.write(json.dumps(content,indent=2,ensure_ascii=False)+&apos;\n&apos;)</div></pre></td></tr></table></figure></p>
-<h2 id="��������-1"><a href="#��������-1" class="headerlink" title="��������"></a>��������</h2><p>ʹ��main()�������ε������Ϻ������ɻ�ȡ��ҳ�ĵ�Ӱ��Ϣ�������а�����100����Ӱ����ʮҳ��ʾ��������Ҫ����offset�������λ�ȡÿһҳ�����ݣ�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def main(offset):</div><div class="line">    url = &apos;http://maoyan.com/board/4?offset=&apos; + str(offset)</div><div class="line">    html = get_one_page(url)</div><div class="line">    for item in parse_one_page(html):</div><div class="line">        write_to_json(item)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    for i in range(10):</div><div class="line">        main(i*10)</div><div class="line">        time.sleep(1)</div></pre></td></tr></table></figure></p>
+<h3 id="使用BeautifulSoup"><a href="#使用BeautifulSoup" class="headerlink" title="使用BeautifulSoup"></a>使用BeautifulSoup</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def parse_one_page(html): #generator</div><div class="line">    soup = BeautifulSoup(html,&apos;lxml&apos;)</div><div class="line">    for dd in soup.find_all(name=&apos;dd&apos;):</div><div class="line">        yield &#123;</div><div class="line">            &apos;index&apos;: dd.find(class_=&apos;board-index&apos;).string,</div><div class="line">            &apos;image&apos;: dd.find_all(name=&apos;img&apos;)[1][&apos;data-src&apos;],           </div><div class="line">            &apos;title&apos;: dd.find(class_=&apos;name&apos;).a.string.strip(),</div><div class="line">            &apos;actor&apos;: dd.find(class_=&apos;star&apos;).string.strip()[3:],</div><div class="line">            &apos;time&apos;: dd.find(class_=&apos;releasetime&apos;).string.strip()[5:],</div><div class="line">            &apos;score&apos;: dd.find(class_=&apos;integer&apos;).string.strip() + dd.find(class_=&apos;fraction&apos;).string.strip()</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h3 id="使用pyquery"><a href="#使用pyquery" class="headerlink" title="使用pyquery"></a>使用pyquery</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def parse_one_page(html): #generator</div><div class="line">    doc = pq(html)</div><div class="line">    for dd in doc(&apos;dd&apos;).items():</div><div class="line">        yield &#123;</div><div class="line">            &apos;index&apos;: dd(&apos;.board-index&apos;).text(),</div><div class="line">            &apos;image&apos;: dd(&apos;img:last-child&apos;).attr(&apos;data-src&apos;),</div><div class="line">            &apos;title&apos;: dd(&apos;.name a&apos;).text().strip(),</div><div class="line">            &apos;actor&apos;: dd(&apos;.star&apos;).text().strip()[3:],</div><div class="line">            &apos;time&apos;: dd(&apos;.releasetime&apos;).text().strip()[5:],</div><div class="line">            &apos;score&apos;: dd(&apos;.integer&apos;).text().strip() + dd(&apos;.fraction&apos;).text().strip()</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h2 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h2><p>将提取出的字典类型的信息写入json文件，且保存json的格式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def write_to_json(content):</div><div class="line">    with open(&apos;maoyanresult.json&apos;,&apos;a&apos;,encoding=&apos;utf-8&apos;) as file:</div><div class="line">        file.write(json.dumps(content,indent=2,ensure_ascii=False)+&apos;\n&apos;)</div></pre></td></tr></table></figure></p>
+<h2 id="代码整合"><a href="#代码整合" class="headerlink" title="代码整合"></a>代码整合</h2><p>使用main()函数依次调用以上函数，可获取单页的电影信息，但排行榜共有100个电影，分十页显示，因此需要根据offset参数依次获取每一页的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def main(offset):</div><div class="line">    url = &apos;http://maoyan.com/board/4?offset=&apos; + str(offset)</div><div class="line">    html = get_one_page(url)</div><div class="line">    for item in parse_one_page(html):</div><div class="line">        write_to_json(item)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    for i in range(10):</div><div class="line">        main(i*10)</div><div class="line">        time.sleep(1)</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -439,7 +442,7 @@
           
             <a href="/tags/python/" rel="tag"># python</a>
           
-            <a href="/tags/����/" rel="tag"># ����</a>
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
           
         </div>
       
@@ -623,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#��ȡL��"><span class="nav-number">1.</span> <span class="nav-text">��ȡĿ��</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#��������"><span class="nav-number">2.</span> <span class="nav-text">��������</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#�������ؿ�"><span class="nav-number">3.</span> <span class="nav-text">�������ؿ�</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#��ҳץȡ"><span class="nav-number">4.</span> <span class="nav-text">��ҳץȡ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#��Ϣ��ȡ"><span class="nav-number">5.</span> <span class="nav-text">��Ϣ��ȡ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ʹ����������ʽ"><span class="nav-number">5.1.</span> <span class="nav-text">ʹ����������ʽ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ʹ��BeautifulSoup"><span class="nav-number">5.2.</span> <span class="nav-text">ʹ��BeautifulSoup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ʹ��pyquery"><span class="nav-number">5.3.</span> <span class="nav-text">ʹ��pyquery</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#д���l�"><span class="nav-number">6.</span> <span class="nav-text">д���ļ�</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#��������-1"><span class="nav-number">7.</span> <span class="nav-text">��������</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬取目标"><span class="nav-number">1.</span> <span class="nav-text">爬取目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体流程"><span class="nav-number">2.</span> <span class="nav-text">总体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入相关库"><span class="nav-number">3.</span> <span class="nav-text">导入相关库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网页抓取"><span class="nav-number">4.</span> <span class="nav-text">网页抓取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息提取"><span class="nav-number">5.</span> <span class="nav-text">信息提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用正则表达式"><span class="nav-number">5.1.</span> <span class="nav-text">使用正则表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用BeautifulSoup"><span class="nav-number">5.2.</span> <span class="nav-text">使用BeautifulSoup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用pyquery"><span class="nav-number">5.3.</span> <span class="nav-text">使用pyquery</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入文件"><span class="nav-number">6.</span> <span class="nav-text">写入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码整合"><span class="nav-number">7.</span> <span class="nav-text">代码整合</span></a></li></ol></div>
             
 
           </div>
@@ -762,7 +765,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2019/03/23/爬取猫眼电影排行榜/';
           this.page.identifier = '2019/03/23/爬取猫眼电影排行榜/';
-          this.page.title = '��ȡè�۵�Ӱ����';
+          this.page.title = '爬取猫眼电影排行';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://vivianhy.disqus.com/embed.js';
