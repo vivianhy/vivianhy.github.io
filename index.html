@@ -400,16 +400,9 @@
       
         
           <h2 id="爬取目标"><a href="#爬取目标" class="headerlink" title="爬取目标"></a>爬取目标</h2><p>通过分析Ajax请求爬取今日头条杨洋美图，将爬取到的图片下载到本地保存。</p>
-<h2 id="Ajax分析"><a href="#Ajax分析" class="headerlink" title="Ajax分析"></a>Ajax分析</h2><ol>
-<li>在今日头条搜索框中输入杨洋美图进行搜索。</li>
-<li>打开FireFox开发者工具，查看网络请求，切换到XHR过滤选项卡查看Ajax请求，观察发现响应内容为json格式。</li>
-<li>页面中的每一条新闻为响应内容data中的一个字段，该字段中的title为新闻标题，image_list为新闻中的图片列表。</li>
-<li>查看Headers选项卡，观察每一个Ajax请求的URL和参数信息，可以发现除了offset参数和timestamp参数，其它参数的值都是不变的。而offset的值为偏移量，可用于控制数据分页，因此，在程序中将offset作为参数传递就可以批量获取数据。timestamp参数为时间戳，可以不用管它。<img src="/2019/03/28/通过分析Ajax爬取今日头条杨洋美图/2019/03/28/通过分析Ajax爬取今日头条杨洋美图/1.jpg" alt="1.jpg" title="">
-<h2 id="爬取流程"><a href="#爬取流程" class="headerlink" title="爬取流程"></a>爬取流程</h2></li>
-<li>根据前面分析的Ajax请求的参数信息构造URL，使用requests库获取响应信息。</li>
-<li>对响应内容进行解析，从data字段中获取图片链接与图片所属标题，构成生成器返回。</li>
-<li>根据图片标题与图片内容的MD5值构造保存文件的名称，将请求得到的图片保存到本地。</li>
-<li>为了能够批量获取数据，构造一个列表用于遍历offset，且为了加快速度，可使用多进程的进程池。<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2></li></ol>
+<h2 id="Ajax分析"><a href="#Ajax分析" class="headerlink" title="Ajax分析"></a>Ajax分析</h2><p>1.在今日头条搜索框中输入杨洋美图进行搜索。<br>2.打开FireFox开发者工具，查看网络请求，切换到XHR过滤选项卡查看Ajax请求，观察发现响应内容为json格式。<br>3.页面中的每一条新闻为响应内容data中的一个字段，该字段中的title为新闻标题，image_list为新闻中的图片列表。<br>4.查看Headers选项卡，观察每一个Ajax请求的URL和参数信息，可以发现除了offset参数和timestamp参数，其它参数的值都是不变的。而offset的值为偏移量，可用于控制数据分页，因此，在程序中将offset作为参数传递就可以批量获取数据。timestamp参数为时间戳，可以不用管它。<br><img src="/2019/03/28/通过分析Ajax爬取今日头条杨洋美图/1.jpg" alt="1"></p>
+<h2 id="爬取流程"><a href="#爬取流程" class="headerlink" title="爬取流程"></a>爬取流程</h2><p>1.根据前面分析的Ajax请求的参数信息构造URL，使用requests库获取响应信息。<br>2.对响应内容进行解析，从data字段中获取图片链接与图片所属标题，构成生成器返回。<br>3.根据图片标题与图片内容的MD5值构造保存文件的名称，将请求得到的图片保存到本地。<br>4.为了能够批量获取数据，构造一个列表用于遍历offset，且为了加快速度，可使用多进程的进程池。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/03/28/通过分析Ajax爬取今日头条杨洋美图/#more" rel="contents">
