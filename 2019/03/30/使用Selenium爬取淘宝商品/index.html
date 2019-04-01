@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="递归," />
+  <meta name="keywords" content="python,爬虫," />
 
 
 
@@ -107,31 +107,22 @@
 
 
 
-<meta name="description" content="杨辉三角形题目描述输入n值，使用递归函数，求杨辉三角形中各个位置上的值。
-输入一个大于等于2的整型数n
-输出题目可能有多组不同的测试数据，对于每组输入数据，按题目的要求输出相应输入n的杨辉三角形。
-样例输入6
-样例输出1 11 2 11 3 3 11 4 6 4 11 5 10 10 5 1
-解题思路有两种解题方法，递归与非递归，递归就是使用递归函数，非递归使用二维数组，循环求解。">
+<meta name="description" content="爬取目标使用Selenium来模拟浏览器操作，抓取淘宝的商品信息(包括商品图片、名称、价格、购买人数、店铺名称、店铺所在地)，并将结果保存到MongoDB。不使用分析Ajax请求的方式是由于淘宝的页面数据获取使用的是JavaScript,使用开发者工具可以发现在请求中没有有效可用的Ajax请求。
+爬取流程1.使用浏览器Firefox，构造webdriver对象用于模拟浏览器操作，这里可以使用浏览器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="九度oj 1073——杨辉三角形">
-<meta property="og:url" content="http://yoursite.com/2017/09/02/九度oj 1073——杨辉三角形/index.html">
+<meta property="og:title" content="使用Selenium爬取淘宝商品">
+<meta property="og:url" content="http://yoursite.com/2019/03/30/使用Selenium爬取淘宝商品/index.html">
 <meta property="og:site_name" content="Vivian's Blog">
-<meta property="og:description" content="杨辉三角形题目描述输入n值，使用递归函数，求杨辉三角形中各个位置上的值。
-输入一个大于等于2的整型数n
-输出题目可能有多组不同的测试数据，对于每组输入数据，按题目的要求输出相应输入n的杨辉三角形。
-样例输入6
-样例输出1 11 2 11 3 3 11 4 6 4 11 5 10 10 5 1
-解题思路有两种解题方法，递归与非递归，递归就是使用递归函数，非递归使用二维数组，循环求解。">
-<meta property="og:updated_time" content="2018-10-07T06:51:26.185Z">
+<meta property="og:description" content="爬取目标使用Selenium来模拟浏览器操作，抓取淘宝的商品信息(包括商品图片、名称、价格、购买人数、店铺名称、店铺所在地)，并将结果保存到MongoDB。不使用分析Ajax请求的方式是由于淘宝的页面数据获取使用的是JavaScript,使用开发者工具可以发现在请求中没有有效可用的Ajax请求。
+爬取流程1.使用浏览器Firefox，构造webdriver对象用于模拟浏览器操作，这里可以使用浏览器">
+<meta property="og:image" content="http://yoursite.com/2019/03/30/使用Selenium爬取淘宝商品/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/30/使用Selenium爬取淘宝商品/2.jpg">
+<meta property="og:updated_time" content="2019-04-01T05:36:26.508Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="九度oj 1073——杨辉三角形">
-<meta name="twitter:description" content="杨辉三角形题目描述输入n值，使用递归函数，求杨辉三角形中各个位置上的值。
-输入一个大于等于2的整型数n
-输出题目可能有多组不同的测试数据，对于每组输入数据，按题目的要求输出相应输入n的杨辉三角形。
-样例输入6
-样例输出1 11 2 11 3 3 11 4 6 4 11 5 10 10 5 1
-解题思路有两种解题方法，递归与非递归，递归就是使用递归函数，非递归使用二维数组，循环求解。">
+<meta name="twitter:title" content="使用Selenium爬取淘宝商品">
+<meta name="twitter:description" content="爬取目标使用Selenium来模拟浏览器操作，抓取淘宝的商品信息(包括商品图片、名称、价格、购买人数、店铺名称、店铺所在地)，并将结果保存到MongoDB。不使用分析Ajax请求的方式是由于淘宝的页面数据获取使用的是JavaScript,使用开发者工具可以发现在请求中没有有效可用的Ajax请求。
+爬取流程1.使用浏览器Firefox，构造webdriver对象用于模拟浏览器操作，这里可以使用浏览器">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/30/使用Selenium爬取淘宝商品/1.jpg">
 
 
 
@@ -159,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/02/九度oj 1073——杨辉三角形/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/30/使用Selenium爬取淘宝商品/"/>
 
 
 
 
 
-  <title> 九度oj 1073——杨辉三角形 | Vivian's Blog </title>
+  <title> 使用Selenium爬取淘宝商品 | Vivian's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -304,7 +295,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/02/九度oj 1073——杨辉三角形/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/使用Selenium爬取淘宝商品/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vivianhy">
@@ -325,7 +316,7 @@
             
             
               
-                九度oj 1073——杨辉三角形
+                使用Selenium爬取淘宝商品
               
             
           </h1>
@@ -340,8 +331,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T20:50:36+08:00">
-                2017-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-30T18:03:06+08:00">
+                2019-03-30
               </time>
             
 
@@ -363,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/网络爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">网络爬虫</span>
                   </a>
                 </span>
 
@@ -381,9 +372,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/02/九度oj 1073——杨辉三角形/#comments" itemprop="discussionUrl">
+                <a href="/2019/03/30/使用Selenium爬取淘宝商品/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/02/九度oj 1073——杨辉三角形/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/03/30/使用Selenium爬取淘宝商品/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -409,14 +400,11 @@
       
 
       
-        <h2 id="杨辉三角形"><a href="#杨辉三角形" class="headerlink" title="杨辉三角形"></a>杨辉三角形</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入n值，使用递归函数，求杨辉三角形中各个位置上的值。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>一个大于等于2的整型数n</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>题目可能有多组不同的测试数据，对于每组输入数据，<br>按题目的要求输出相应输入n的杨辉三角形。</p>
-<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>6</p>
-<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>1 1<br>1 2 1<br>1 3 3 1<br>1 4 6 4 1<br>1 5 10 10 5 1</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>有两种解题方法，递归与非递归，递归就是使用递归函数，非递归使用二维数组，循环求解。<br><a id="more"></a></p>
-<h3 id="源代码1"><a href="#源代码1" class="headerlink" title="源代码1"></a>源代码1</h3><p><strong>非递归方法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line"></div><div class="line">int a[100][100];</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int n;</div><div class="line">    while(scanf(&quot;%d&quot;,&amp;n)!=EOF)</div><div class="line">    &#123;</div><div class="line">        a[0][0]=a[0][1]=1;</div><div class="line">        printf(&quot;%d %d\n&quot;,a[0][0],a[0][1]);</div><div class="line">        if(n&gt;2)</div><div class="line">        &#123;</div><div class="line">            int i,j;</div><div class="line">            for(i=1;i&lt;n-1;i++)</div><div class="line">            &#123;</div><div class="line">                for(j=0;j&lt;i+2;j++)</div><div class="line">                &#123;</div><div class="line">                    if(j==0)</div><div class="line">                        a[i][j]=1;</div><div class="line">                    else</div><div class="line">                        a[i][j]=a[i-1][j-1]+a[i-1][j];</div><div class="line">                    if(j!=(i+1))</div><div class="line">                        printf(&quot;%d &quot;,a[i][j]);</div><div class="line">                    else</div><div class="line">                        printf(&quot;%d\n&quot;,a[i][j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="源代码2"><a href="#源代码2" class="headerlink" title="源代码2"></a>源代码2</h3><p><strong>递归方法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line"></div><div class="line">int f(int i,int j)</div><div class="line">&#123;</div><div class="line">    if(j==0 || j==(i+1)) //每行第一个数字和最后一个数字为1</div><div class="line">        return 1;</div><div class="line">    else</div><div class="line">        return f(i-1,j-1)+f(i-1,j);</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int n;</div><div class="line">    while(scanf(&quot;%d&quot;,&amp;n)!=EOF)</div><div class="line">    &#123;</div><div class="line">        int i,j;</div><div class="line">        for(i=0;i&lt;n-1;i++)</div><div class="line">        &#123;</div><div class="line">            for(j=0;j&lt;i+2;j++)</div><div class="line">            &#123;</div><div class="line">                if(j!=(i+1))</div><div class="line">                    printf(&quot;%d &quot;,f(i,j));</div><div class="line">                else</div><div class="line">                    printf(&quot;%d\n&quot;,f(i,j));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <h2 id="爬取目标"><a href="#爬取目标" class="headerlink" title="爬取目标"></a>爬取目标</h2><p>使用Selenium来模拟浏览器操作，抓取淘宝的商品信息(包括商品图片、名称、价格、购买人数、店铺名称、店铺所在地)，并将结果保存到MongoDB。<br>不使用分析Ajax请求的方式是由于淘宝的页面数据获取使用的是JavaScript,使用开发者工具可以发现在请求中没有有效可用的Ajax请求。<br><img src="/2019/03/30/使用Selenium爬取淘宝商品/1.jpg" alt="1"></p>
+<h2 id="爬取流程"><a href="#爬取流程" class="headerlink" title="爬取流程"></a>爬取流程</h2><p>1.使用浏览器Firefox，构造webdriver对象用于模拟浏览器操作，这里可以使用浏览器的headless模式。<br>2.使用get_one_page(page_num)获取一页商品列表页，由于访问的链接为第一页的内容，若要获取其它页的内容，使用输入页码并跳转的方式实现。使用WebDriverWait对象等待加载，以确保要使用的页面元素已成功加载出来了。<br>3.成功获取到页面源码后，使用PyQuery进行解析，获取每个商品的信息，构成生成器返回。<br>4.使用save_to_mongo(product)将获取到的每个商品的信息保存到MongoDB，在保存数据之前，确保已成功连接MongoDB，并指定数据库与集合。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line">from selenium import webdriver</div><div class="line">from selenium.common.exceptions import TimeoutException</div><div class="line">from selenium.webdriver.common.by import By</div><div class="line">from selenium.webdriver.support import expected_conditions as EC</div><div class="line">from selenium.webdriver.support.wait import WebDriverWait</div><div class="line">from urllib.parse import quote</div><div class="line">from pyquery import PyQuery as pq</div><div class="line">import pymongo</div><div class="line"></div><div class="line">browser = webdriver.Firefox()</div><div class="line">### Firefox headless</div><div class="line"># firefox_options = webdriver.FirefoxOptions()</div><div class="line"># firefox_options.add_argument(&apos;--headless&apos;)</div><div class="line"># browser = webdriver.Firefox(firefox_options=firefox_options)</div><div class="line">wait = WebDriverWait(browser,10)</div><div class="line">KEYWORD = &apos;iphone&apos;</div><div class="line">MAX_PAGE = 10</div><div class="line"></div><div class="line"># database</div><div class="line">mongo_url = &apos;localhost&apos;</div><div class="line">mongo_db = &apos;taobao&apos;</div><div class="line">mongo_collection = &apos;products&apos;</div><div class="line">client = pymongo.MongoClient(mongo_url)</div><div class="line">db = client[mongo_db] #注意是中括号</div><div class="line">collection = db[mongo_collection]</div><div class="line"></div><div class="line">def get_one_page(page_num):</div><div class="line">    try:</div><div class="line">        url = &apos;https://s.taobao.com/search?q=&apos; + quote(KEYWORD)</div><div class="line">        browser.get(url)</div><div class="line">        if page_num &gt; 1:</div><div class="line">            input = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, &apos;#mainsrp-pager .form .input&apos;)))</div><div class="line">            #下拉滚动条使要获取的内容显示到视窗,否则可能会报&quot;Element is not clickable at point&quot;错误</div><div class="line">            button = browser.find_element_by_css_selector(&apos;#mainsrp-pager .form .J_Submit&apos;)</div><div class="line">            browser.execute_script(&quot;arguments[0].scrollIntoView(false);&quot;, button)</div><div class="line">            submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, &apos;#mainsrp-pager .form .J_Submit&apos;)))</div><div class="line">            input.clear()</div><div class="line">            input.send_keys(page_num)</div><div class="line">            submit.click()</div><div class="line">        wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, &apos;#mainsrp-pager .item.active span&apos;),str(page_num)))</div><div class="line">        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, &apos;#mainsrp-itemlist .m-itemlist .items&apos;)))</div><div class="line">        return (browser.page_source)</div><div class="line">    except TimeoutException:</div><div class="line">        get_one_page(page_num)</div><div class="line"></div><div class="line">def get_products(html):</div><div class="line">    doc = pq(html)</div><div class="line">    products = doc(&apos;#mainsrp-itemlist .m-itemlist .items .item&apos;).items()</div><div class="line">    for product in products:</div><div class="line">        yield &#123;</div><div class="line">            &apos;image&apos;: product(&apos;.pic img&apos;).attr(&apos;data-src&apos;),</div><div class="line">            &apos;title&apos;: product(&apos;.pic img&apos;).attr(&apos;alt&apos;),</div><div class="line">            &apos;price&apos;: product(&apos;.price&apos;).text(),</div><div class="line">            &apos;deal&apos;: product(&apos;.deal-cnt&apos;).text(),</div><div class="line">            &apos;shop&apos;: product(&apos;.shopname&apos;).text(),</div><div class="line">            &apos;location&apos;: product(&apos;.location&apos;).text()</div><div class="line">        &#125;</div><div class="line"></div><div class="line">def save_to_mongo(product):</div><div class="line">    try:</div><div class="line">        collection.insert_one(product)</div><div class="line">    except Exception:</div><div class="line">        print(&apos;save failed&apos;)</div><div class="line"></div><div class="line">def main():</div><div class="line">    for i in range(1,MAX_PAGE+1):</div><div class="line">        html = get_one_page(i)</div><div class="line">        for product in get_products(html):</div><div class="line">            #print(product)</div><div class="line">            save_to_mongo(product)</div><div class="line">    print(&apos;success&apos;)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    main()</div></pre></td></tr></table></figure>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="/2019/03/30/使用Selenium爬取淘宝商品/2.jpg" alt="2"><br>可以看到结果已保存到MongoDB数据库中。</p>
 
       
     </div>
@@ -446,7 +434,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/递归/" rel="tag"># 递归</a>
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
           
         </div>
       
@@ -459,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/01/九度oj 1482——玛雅人的密码/" rel="next" title="九度oj 1482——玛雅人的密码">
-                <i class="fa fa-chevron-left"></i> 九度oj 1482——玛雅人的密码
+              <a href="/2019/03/28/通过分析Ajax爬取今日头条杨洋美图/" rel="next" title="通过分析Ajax爬取今日头条杨洋美图">
+                <i class="fa fa-chevron-left"></i> 通过分析Ajax爬取今日头条杨洋美图
               </a>
             
           </div>
@@ -468,10 +458,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/03/九度oj 1470——调整方阵/" rel="prev" title="九度oj 1470——调整方阵">
-                九度oj 1470——调整方阵 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -634,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#杨辉三角形"><span class="nav-number">1.</span> <span class="nav-text">杨辉三角形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入"><span class="nav-number">1.2.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出"><span class="nav-number">1.3.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.6.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码1"><span class="nav-number">1.7.</span> <span class="nav-text">源代码1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码2"><span class="nav-number">1.8.</span> <span class="nav-text">源代码2</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬取目标"><span class="nav-number">1.</span> <span class="nav-text">爬取目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爬取流程"><span class="nav-number">2.</span> <span class="nav-text">爬取流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果"><span class="nav-number">4.</span> <span class="nav-text">结果</span></a></li></ol></div>
             
 
           </div>
@@ -771,9 +757,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/09/02/九度oj 1073——杨辉三角形/';
-          this.page.identifier = '2017/09/02/九度oj 1073——杨辉三角形/';
-          this.page.title = '九度oj 1073——杨辉三角形';
+          this.page.url = 'http://yoursite.com/2019/03/30/使用Selenium爬取淘宝商品/';
+          this.page.identifier = '2019/03/30/使用Selenium爬取淘宝商品/';
+          this.page.title = '使用Selenium爬取淘宝商品';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://vivianhy.disqus.com/embed.js';
