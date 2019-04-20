@@ -1,0 +1,826 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,爬虫," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vivian's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="目标有些网站会采取一些反爬虫措施，如封IP，可以利用代理解决封IP的问题。因此首先需要获取大量代理并筛选出可用的代理，搭建一个可修改维护的代理池。
+代理池的基本模块1.存储模块：负责存储抓取下来的代理。使用Redis的有序集合，通过分数字段保证代理不重复且标识代理的可用情况。2.获取模块：从各大代理网站抓取代理(高匿代理)，并将结果传递给存储模块保存。3.检测模块：检测数据库中所有代理的可用情况，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代理池的搭建">
+<meta property="og:url" content="http://yoursite.com/2019/04/20/代理池的搭建/index.html">
+<meta property="og:site_name" content="Vivian's Blog">
+<meta property="og:description" content="目标有些网站会采取一些反爬虫措施，如封IP，可以利用代理解决封IP的问题。因此首先需要获取大量代理并筛选出可用的代理，搭建一个可修改维护的代理池。
+代理池的基本模块1.存储模块：负责存储抓取下来的代理。使用Redis的有序集合，通过分数字段保证代理不重复且标识代理的可用情况。2.获取模块：从各大代理网站抓取代理(高匿代理)，并将结果传递给存储模块保存。3.检测模块：检测数据库中所有代理的可用情况，">
+<meta property="og:image" content="http://yoursite.com/2019/04/20/代理池的搭建/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/20/代理池的搭建/2.jpg">
+<meta property="og:updated_time" content="2019-04-20T13:04:10.088Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代理池的搭建">
+<meta name="twitter:description" content="目标有些网站会采取一些反爬虫措施，如封IP，可以利用代理解决封IP的问题。因此首先需要获取大量代理并筛选出可用的代理，搭建一个可修改维护的代理池。
+代理池的基本模块1.存储模块：负责存储抓取下来的代理。使用Redis的有序集合，通过分数字段保证代理不重复且标识代理的可用情况。2.获取模块：从各大代理网站抓取代理(高匿代理)，并将结果传递给存储模块保存。3.检测模块：检测数据库中所有代理的可用情况，">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/20/代理池的搭建/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/20/代理池的搭建/"/>
+
+
+
+
+
+  <title> 代理池的搭建 | Vivian's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vivian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/20/代理池的搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vivianhy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vivian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                代理池的搭建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-20T20:15:19+08:00">
+                2019-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">网络爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/20/代理池的搭建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/04/20/代理池的搭建/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>有些网站会采取一些反爬虫措施，如封IP，可以利用代理解决封IP的问题。因此首先需要获取大量代理并筛选出可用的代理，搭建一个可修改维护的代理池。</p>
+<h2 id="代理池的基本模块"><a href="#代理池的基本模块" class="headerlink" title="代理池的基本模块"></a>代理池的基本模块</h2><p>1.存储模块：负责存储抓取下来的代理。使用Redis的有序集合，通过分数字段保证代理不重复且标识代理的可用情况。<br>2.获取模块：从各大代理网站抓取代理(高匿代理)，并将结果传递给存储模块保存。<br>3.检测模块：检测数据库中所有代理的可用情况，根据检测结果更新代理的标识。<br>4.调度模块：使用调度模块定时运行获取模块与检测模块。</p>
+<h2 id="代理池的实现"><a href="#代理池的实现" class="headerlink" title="代理池的实现"></a>代理池的实现</h2><h3 id="存储模块"><a href="#存储模块" class="headerlink" title="存储模块"></a>存储模块</h3><p>使用Redis的有序集合，一个代理就是集合的一个元素，每个代理都有一个分数字段，分数规则的设置如下：<br>1.分数100代表代理可用，检测器定时检测每个代理的可用情况，若可用就立即设置为100，若不可用就将分数减1，分数减到0就将该代理从数据库中删除。<br>2.新获取的代理初始分数为10，若检测为可用则将分数设置为100，不可用则分数减1，分数减到0就将该代理从数据库中删除。<br>要获取代理时，就从代理池中随机获取分数最高的代理。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">import redis</div><div class="line">from random import choice</div><div class="line">import re</div><div class="line"></div><div class="line">MAX_SCORE = 100 #最大分数</div><div class="line">MIN_SCORE = 0</div><div class="line">INITIAL_SCORE = 10 #初始分数</div><div class="line">REDIS_HOST = &apos;localhost&apos;</div><div class="line">REDIS_PORT = 6379</div><div class="line">REDIS_PASSWORD = &apos;foobared&apos;</div><div class="line">REDIS_KEY = &apos;proxies&apos; #有序集合的键名</div><div class="line"></div><div class="line">class RedisClient(object):</div><div class="line">    def __init__(self,host=REDIS_HOST,port=REDIS_PORT,password=REDIS_PASSWORD):</div><div class="line">        self.db = redis.StrictRedis(host=host,port=port,password=password,decode_responses=True)</div><div class="line"></div><div class="line">    # 添加代理</div><div class="line">    def add(self,proxy,score=INITIAL_SCORE):</div><div class="line">        if not re.match(&apos;\d+\.\d+\.\d+\.\d+\:\d+&apos;,proxy):</div><div class="line">            print(&apos;&#123;0&#125;不符合规范，丢弃！&apos;.format(proxy))</div><div class="line">            return</div><div class="line">        if not self.db.zscore(REDIS_KEY,proxy):</div><div class="line">            print(&apos;代理&#123;0&#125;添加成功&apos;.format(proxy))</div><div class="line">            return self.db.zadd(REDIS_KEY,&#123;proxy:score&#125;) #注意库更新后第二个参数为字典格式          </div><div class="line"></div><div class="line">    # 随机获取有效代理</div><div class="line">    def random(self):</div><div class="line">        result = self.db.zrangebyscore(REDIS_KEY,MAX_SCORE,MAX_SCORE)</div><div class="line">        if len(result):</div><div class="line">            return choice(result)</div><div class="line">        else:</div><div class="line">            result = self.db.zrevrange(REDIS_KEY,0,100)</div><div class="line">            if len(result):</div><div class="line">                return choice(result)</div><div class="line">            else:</div><div class="line">                print(&apos;代理池已枯竭！&apos;)</div><div class="line">                return</div><div class="line"></div><div class="line">    # 代理的减分与删除</div><div class="line">    def decrease(self,proxy):</div><div class="line">        score = self.db.zscore(REDIS_KEY,proxy)</div><div class="line">        if score:</div><div class="line">            if score &gt; MIN_SCORE:</div><div class="line">                print(&apos;&#123;0&#125;的当前分数为&#123;1&#125;；减1&apos;.format(proxy,score))</div><div class="line">                return self.db.zincrby(REDIS_KEY,-1,proxy) #注意库更新后参数的顺序发生了变化</div><div class="line">            else:</div><div class="line">                print(&apos;&#123;0&#125;的当前分数为&#123;1&#125;；移除&apos;.format(proxy,score))</div><div class="line">                return self.db.zrem(REDIS_KEY,proxy)</div><div class="line"></div><div class="line">    # 判断代理是否存在</div><div class="line">    def exists(self,proxy):</div><div class="line">        if self.db.zscore(REDIS_KEY,proxy):</div><div class="line">            return True</div><div class="line">        else:</div><div class="line">            return False</div><div class="line"></div><div class="line">    # 将代理分数设置为最大值</div><div class="line">    def max(self,proxy):</div><div class="line">        print(&apos;代理&#123;0&#125;可用，设置分数为&#123;1&#125;&apos;.format(proxy,MAX_SCORE))</div><div class="line">        return self.db.zadd(REDIS_KEY,MAX_SCORE,proxy)</div><div class="line"></div><div class="line">    # 获取代理数量</div><div class="line">    def count(self):</div><div class="line">        return self.db.zcard(REDIS_KEY)</div><div class="line"></div><div class="line">    # 获取全部代理</div><div class="line">    def all(self):</div><div class="line">        return self.db.zrangebyscore(REDIS_KEY,MIN_SCORE,MAX_SCORE)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    conn = RedisClient()</div><div class="line">    result = conn.count()</div><div class="line">    print(result)</div></pre></td></tr></table></figure>
+<h3 id="获取模块"><a href="#获取模块" class="headerlink" title="获取模块"></a>获取模块</h3><p>1.使用Crawler类从各代理网站抓取代理，对每个网站定义一个抓取方法，且都以crawl开头。<br>2.借助元类动态获取所有以crawl开头的方法名称。<br>3.使用Getter类动态调用所有以crawl开头的方法，获取代理并保存到数据库。</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line">import json</div><div class="line">from utils import get_page</div><div class="line">from pyquery import PyQuery as pq</div><div class="line">from db import RedisClient</div><div class="line"></div><div class="line">POOL_THRESHOLD = 10000</div><div class="line"></div><div class="line"># 元类</div><div class="line">class ProxyMetaclass(type):</div><div class="line">    def __new__(cls, name, bases, attrs):</div><div class="line">        count = 0</div><div class="line">        attrs[&apos;__CrawlFunc__&apos;] = []</div><div class="line">        for k, v in attrs.items():</div><div class="line">            if &apos;crawl_&apos; in k:</div><div class="line">                attrs[&apos;__CrawlFunc__&apos;].append(k)</div><div class="line">                count += 1</div><div class="line">        attrs[&apos;__CrawlFuncCount__&apos;] = count</div><div class="line">        return type.__new__(cls, name, bases, attrs)</div><div class="line"></div><div class="line"># 抓取器类</div><div class="line">class Crawler(object,metaclass=ProxyMetaclass):</div><div class="line">    def crawl_daili66(self, page_count=6):</div><div class="line">        for page in range(1, page_count+1):</div><div class="line">            url = &apos;http://www.66ip.cn/&#123;&#125;.html&apos;.format(page)</div><div class="line">            html = get_page(url)</div><div class="line">            if html:</div><div class="line">                doc = pq(html)</div><div class="line">                trs = doc(&apos;.containerbox table tr:gt(0)&apos;).items()</div><div class="line">                for tr in trs:</div><div class="line">                    ip = tr(&apos;td:nth-child(1)&apos;).text()</div><div class="line">                    port = tr(&apos;td:nth-child(2)&apos;).text()</div><div class="line">                    yield &apos;:&apos;.join([ip,port])</div><div class="line"></div><div class="line">    def crawl_ip3366(self, page_count=6):</div><div class="line">        for page in range(1, page_count+1):</div><div class="line">            url = &apos;http://www.ip3366.net/free/?stype=1&amp;page=&#123;&#125;&apos;.format(page)</div><div class="line">            html = get_page(url)</div><div class="line">            if html:</div><div class="line">                doc = pq(html)</div><div class="line">                trs = doc(&apos;.table tbody tr&apos;).items()</div><div class="line">                for tr in trs:</div><div class="line">                    ip = tr(&apos;td:nth-child(1)&apos;).text()</div><div class="line">                    port = tr(&apos;td:nth-child(2)&apos;).text()</div><div class="line">                    yield &apos;:&apos;.join([ip,port])</div><div class="line"></div><div class="line">    def crawl_kuaidaili(self, page_count=6):</div><div class="line">        for page in range(1, page_count+1):</div><div class="line">            url = &apos;http://www.kuaidaili.com/free/inha/&#123;&#125;/&apos;.format(page)</div><div class="line">            html = get_page(url)</div><div class="line">            if html:</div><div class="line">                doc = pq(html)</div><div class="line">                trs = doc(&apos;.table tbody tr&apos;).items()</div><div class="line">                for tr in trs:</div><div class="line">                    ip = tr(&apos;td:nth-child(1)&apos;).text()</div><div class="line">                    port = tr(&apos;td:nth-child(2)&apos;).text()</div><div class="line">                    yield &apos;:&apos;.join([ip,port])</div><div class="line"></div><div class="line"># 获取器类</div><div class="line">class Getter(object):</div><div class="line">    def __init__(self):</div><div class="line">        self.redis = RedisClient()</div><div class="line">        self.crawler = Crawler()</div><div class="line"></div><div class="line">    def is_over_threshold(self):</div><div class="line">        if self.redis.count() &gt;= POOL_THRESHOLD:</div><div class="line">            return True</div><div class="line">        else:</div><div class="line">            return False</div><div class="line"></div><div class="line">    def run(self):</div><div class="line">        print(&apos;获取器开始执行!&apos;)</div><div class="line">        if not self.is_over_threshold():</div><div class="line">            for callback_label in range(self.crawler.__CrawlFuncCount__):</div><div class="line">                callback = self.crawler.__CrawlFunc__[callback_label]</div><div class="line">                for proxy in eval(&apos;self.crawler.&#123;&#125;()&apos;.format(callback)):</div><div class="line">                    self.redis.add(proxy)                    </div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    g = Getter()</div><div class="line">    g.run()</div></pre></td></tr></table></figure>
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><p><img src="/2019/04/20/代理池的搭建/1.jpg" alt="1"></p>
+<h3 id="检测模块"><a href="#检测模块" class="headerlink" title="检测模块"></a>检测模块</h3><p>使用异步请求库aiohttp对代理进行检测，提高检测效率。</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">import asyncio</div><div class="line">import aiohttp</div><div class="line">import time</div><div class="line">from db import RedisClient</div><div class="line"></div><div class="line">VALID_STATUS_CODES = [200]</div><div class="line">TEST_URL = &apos;http://www.baidu.com&apos;</div><div class="line">BATCH_TEST_SIZE = 10</div><div class="line"></div><div class="line">class Tester(object):</div><div class="line">    def __init__(self):</div><div class="line">        self.redis = RedisClient()</div><div class="line"></div><div class="line">    async def test_single_proxy(self,proxy):</div><div class="line">        conn = aiohttp.TCPConnector(ssl=False)</div><div class="line">        async with aiohttp.ClientSession(connector=conn) as session:</div><div class="line">            try:</div><div class="line">                if isinstance(proxy, bytes):</div><div class="line">                    proxy = proxy.decode(&apos;utf-8&apos;)</div><div class="line">                real_proxy = &apos;http://&apos; + proxy</div><div class="line">                async with session.get(TEST_URL, proxy=real_proxy, timeout=15, allow_redirects=False) as response:</div><div class="line">                    if response.status in VALID_STATUS_CODES:</div><div class="line">                        self.redis.max(proxy)</div><div class="line">                    else:</div><div class="line">                        self.redis.decrease(proxy)</div><div class="line">            except (aiohttp.ClientError, aiohttp.client_exceptions.ClientConnectorError, asyncio.TimeoutError, AttributeError):</div><div class="line">                self.redis.decrease(proxy)</div><div class="line"></div><div class="line">    def run(self):</div><div class="line">        print(&apos;测试器开始运行！&apos;)</div><div class="line">        try:</div><div class="line">            proxies = self.redis.all()</div><div class="line">            count = len(proxies)</div><div class="line">            print(&apos;当前共有&#123;0&#125;个代理&apos;.format(count))</div><div class="line">            for i in range(0, count, BATCH_TEST_SIZE):</div><div class="line">                start = i</div><div class="line">                end = min(i+BATCH_TEST_SIZE, count)</div><div class="line">                test_proxies = proxies[start:end]</div><div class="line">                tasks = [self.test_single_proxy(proxy) for proxy in test_proxies]</div><div class="line">                loop = asyncio.get_event_loop()</div><div class="line">                loop.run_until_complete(asyncio.wait(tasks))</div><div class="line">                time.sleep(5)</div><div class="line">        except Exception as e:</div><div class="line">            print(&apos;测试器发生错误&apos;,e.args)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    t = Tester()</div><div class="line">    t.run()</div></pre></td></tr></table></figure>
+<h4 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h4><p><img src="/2019/04/20/代理池的搭建/2.jpg" alt="2"></p>
+<h3 id="调度模块"><a href="#调度模块" class="headerlink" title="调度模块"></a>调度模块</h3><p>调度模块使用多进程的形式定时运行获取模块与检测模块，可使用它的run()方法启动整个代理池。</p>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">from multiprocessing import Process</div><div class="line">from crawler import Getter</div><div class="line">from tester import Tester</div><div class="line">import time</div><div class="line"></div><div class="line">TESTER_CYCLE = 60</div><div class="line">GETTER_CYCLE = 600</div><div class="line">TESTER_ENABLED = True</div><div class="line">GETTER_ENABLED = True</div><div class="line"></div><div class="line">class Scheduler(object):</div><div class="line">    def __init__(self):</div><div class="line">        self.getter = Getter()</div><div class="line">        self.tester = Tester()</div><div class="line"></div><div class="line">    # 定时获取代理</div><div class="line">    def scheduler_getter(self, cycle=GETTER_CYCLE):</div><div class="line">        while True:</div><div class="line">            self.getter.run()</div><div class="line">            time.sleep(cycle)</div><div class="line"></div><div class="line">    # 定时测试代理</div><div class="line">    def schedule_tester(self, cycle=TESTER_CYCLE):</div><div class="line">        while True:</div><div class="line">            self.tester.run()</div><div class="line">            time.sleep(cycle)</div><div class="line"></div><div class="line">    def run(self):</div><div class="line">        print(&apos;代理池开始运行！&apos;)</div><div class="line">        if GETTER_ENABLED:</div><div class="line">            getter_process = Process(target = self.scheduler_getter)</div><div class="line">            getter_process.start()</div><div class="line">        </div><div class="line">        if TESTER_ENABLED:</div><div class="line">            tester_process = Process(target = self.schedule_tester)</div><div class="line">            tester_process.start()</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    scheduler = Scheduler()</div><div class="line">    scheduler.run()</div></pre></td></tr></table></figure>
+<h3 id="随机获取代理"><a href="#随机获取代理" class="headerlink" title="随机获取代理"></a>随机获取代理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from db import RedisClient</div><div class="line"></div><div class="line">def get_proxy():</div><div class="line">    conn = RedisClient()</div><div class="line">    return conn.random()</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    result = get_proxy()</div><div class="line">    print(result)</div></pre></td></tr></table></figure>
+<p>完整代码见：<a href="https://github.com/vivianhy/WebSpider" target="_blank" rel="external">https://github.com/vivianhy/WebSpider</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/15/使用scapy解析pcap文件/" rel="next" title="使用scapy解析pcap文件">
+                <i class="fa fa-chevron-left"></i> 使用scapy解析pcap文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Vivianhy" />
+          <p class="site-author-name" itemprop="name">Vivianhy</p>
+           
+              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/vivianhy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=s8XaxdrS3dvK88LCndDc3g" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理池的基本模块"><span class="nav-number">2.</span> <span class="nav-text">代理池的基本模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理池的实现"><span class="nav-number">3.</span> <span class="nav-text">代理池的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储模块"><span class="nav-number">3.1.</span> <span class="nav-text">存储模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">3.1.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取模块"><span class="nav-number">3.2.</span> <span class="nav-text">获取模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">3.2.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测模块"><span class="nav-number">3.3.</span> <span class="nav-text">检测模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码-2"><span class="nav-number">3.3.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度模块"><span class="nav-number">3.4.</span> <span class="nav-text">调度模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码-3"><span class="nav-number">3.4.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机获取代理"><span class="nav-number">3.5.</span> <span class="nav-text">随机获取代理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vivianhy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://vivianhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/04/20/代理池的搭建/';
+          this.page.identifier = '2019/04/20/代理池的搭建/';
+          this.page.title = '代理池的搭建';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://vivianhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
